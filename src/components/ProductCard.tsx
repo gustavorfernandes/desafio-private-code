@@ -1,8 +1,9 @@
 /* eslint-disable @next/next/no-img-element */
 function ProductCard() {
   return (
-    <div className="w-full flex justify-center h-[calc(100vh-10rem)] mb-[2rem] overflow-y-scroll">
-    <div className="w-10/12 max-h-24 flex items-center flex-wrap gap-[4%]">
+    <div className="w-10/12 flex justify-center h-[calc(100vh-10rem)] mb-[2rem] overflow-y-scroll 
+    scrollbar scrollbar-medium scrollbar-thumb-redPrivateCode-100 scrollbar-track-transparent">
+    <div className="w-full max-h-24 flex items-center flex-wrap gap-[3%] mr-[2%]">
       <div className="w-[48%] flex flex-col items-center bg-white shadow-container rounded-lg mb-4">
         <img
           className="w-full rounded-tl-lg rounded-tr-lg"
@@ -146,8 +147,7 @@ function ProductCard() {
             R$ 40,00
           </span>
         </div>
-      </div>
-      
+      </div>      
     </div>
     </div>
   )

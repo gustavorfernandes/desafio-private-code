@@ -10,5 +10,12 @@ html {
 
 body {  
   font-family: 'Nunito', sans-serif;
+  -webkit-font-smoothing: antialiased;  
   background-color: #F0F4F5;
+}
+
+@layer utilities {
+  .scrollbar-medium::-webkit-scrollbar {
+    width: 3px;
+  }
 }

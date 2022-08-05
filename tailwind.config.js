@@ -26,7 +26,6 @@ module.exports = {
         },
         "redPrivateCode": {
           100: '#E83737',         
-          200: '#E83737',         
         },
       },
       boxShadow: {
@@ -34,5 +33,7 @@ module.exports = {
       }
     },
   },
-  plugins: [],
+  plugins: [
+    require('tailwind-scrollbar')
+  ],
 }
