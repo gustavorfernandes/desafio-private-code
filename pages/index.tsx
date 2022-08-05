@@ -7,7 +7,7 @@ const Home: NextPage = () => {
     <>
       <Head>
         <title>Private Code Challenge</title>
-        <meta name="description" content="Aplicação desenvolvida para o Desafio Front-End da Private Code" />
+        <meta name="description" content="Aplicação web desenvolvida para o Desafio Front-End da Private Code" />
       </Head>
 
       <HomeScreen />
