@@ -1,0 +1,32 @@
+@import 'swiper/css';
+@import 'swiper/css/navigation';
+
+.swiper {
+  padding: 2rem 0;
+}
+
+.swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.swiper-slide:active {
+  cursor: grab;
+}
+
+.swiper-button-prev {    
+  color: #E83737;
+}
+
+.swiper-button-prev::after {
+  font-size: 2rem;  
+}
+
+.swiper-button-next {
+  color: #E83737;
+}
+
+.swiper-button-next::after {
+  font-size: 2rem;  
+}
