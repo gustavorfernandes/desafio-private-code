@@ -5,7 +5,7 @@ import { AiOutlineClose } from "@react-icons/all-files/ai/AiOutlineClose"
 import { MdDone } from "@react-icons/all-files/md/MdDone"
 import { AnimatePresence, motion } from "framer-motion"
 import { useState } from "react"
-import Item from "./Item"
+import ItemCart from "./ItemCart"
 
 function Cart() {
   const [isActive, setActive] = useState(false)
@@ -75,11 +75,11 @@ function Cart() {
               <div className="w-full flex flex-col h-[calc(100vh-25rem)] overflow-y-scroll scrollbar">
 
                 <div className="w-full flex items-center justify-between px-6 py-4 bg-neutralPrivateCode-100 min-h-[4rem]">
-                  <Item />
+                  <ItemCart />
                 </div>
 
                 <div className="w-full flex items-center justify-between px-6 py-4 bg-white min-h-[4rem]">
-                  <Item />
+                  <ItemCart />
                 </div>
 
                 <div className="w-full flex items-center justify-between px-6 py-4 bg-neutralPrivateCode-100 min-h-[4rem]">

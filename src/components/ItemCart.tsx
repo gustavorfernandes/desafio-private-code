@@ -1,6 +1,6 @@
 import Counter from "./Counter";
 
-function Item() {
+function ItemCart() {
   return (
     <>
       <div className="w-6/12 flex flex-col justify-center text-xs text-neutralPrivateCode-700 font-nunito">
@@ -24,4 +24,4 @@ function Item() {
   )
 }
 
-export default Item
+export default ItemCart
