@@ -1,13 +1,24 @@
+import { useState } from "react"
 import ProductCard from "../components/ProductCard"
 import { Slider, SliderProps, Slide } from '../utils/slider-imports'
 
-const settings: SliderProps = {
+const settings: SliderProps = { 
   spaceBetween: 0,
-  slidesPerView: 1,
-  navigation: true,
+  slidesPerView: 3,
+  onSlideChange(swiper) {
+    console.log("Slide change")
+  },
+
+  autoHeight: true,
+  navigation: false,
+  scrollbar: {
+    draggable: true,
+  }
 }
 
 function Content() {
+  const [isSliderActive, setSliderActive] = useState("Pizzas")
+  
   return (
     <div className="w-screen h-[calc(100vh-192px)] flex flex-col items-center -z-1 pt-8 gap-8">
 
@@ -16,37 +27,66 @@ function Content() {
           settings={settings}
         >
           <Slide>
-            <div className="flex items-center justify-center text-center text-neutralPrivateCode-600 font-bold">
+            <span 
+              className={`flex items-center justify-center text-center text-neutralPrivateCode-600 font-bold ${isSliderActive === "Pizzas" && "text-redPrivateCode-100"}`}
+              onClick={() => {
+                setSliderActive("Pizzas")
+              }}  
+            >
               Pizzas
-            </div>
+            </span>
           </Slide>
           <Slide>
-            <div className="flex items-center justify-center w-full text-center text-neutralPrivateCode-600 font-bold">
-              Combo Lanche
-            </div>
+          <span 
+              className={`flex items-center justify-center text-center text-neutralPrivateCode-600 font-bold ${isSliderActive === "Combos" && "text-redPrivateCode-100"}`}
+              onClick={() => {
+                setSliderActive("Combos")
+              }}  
+            >
+              Combos
+            </span>
           </Slide>
           <Slide>
-            <div className="flex items-center justify-center w-full text-center text-neutralPrivateCode-600 font-bold">
-              Hamburger
-            </div>
+          <span 
+              className={`flex items-center justify-center text-center text-neutralPrivateCode-600 font-bold ${isSliderActive === "Hamburgers" && "text-redPrivateCode-100"}`}
+              onClick={() => {
+                setSliderActive("Hamburgers")
+              }}  
+            >
+              Hamburgers
+            </span>
           </Slide>
           <Slide>
-            <div className="flex items-center justify-center w-full text-center text-neutralPrivateCode-600 font-bold">
-              Refrigerantes
-            </div>
-          </Slide>
-          <Slide>
-            <div className="flex items-center justify-center w-full text-center text-neutralPrivateCode-600 font-bold">
+          <span 
+              className={`flex items-center justify-center text-center text-neutralPrivateCode-600 font-bold ${isSliderActive === "Sucos" && "text-redPrivateCode-100"}`}
+              onClick={() => {
+                setSliderActive("Sucos")
+              }}  
+            >
               Sucos
-            </div>
+            </span>
           </Slide>
           <Slide>
-            <div className="flex items-center justify-center w-full text-center text-neutralPrivateCode-600 font-bold">
+          <span 
+              className={`flex items-center justify-center text-center text-neutralPrivateCode-600 font-bold ${isSliderActive === "Refrigerantes" && "text-redPrivateCode-100"}`}
+              onClick={() => {
+                setSliderActive("Refrigerantes")
+              }}  
+            >
+              Refrigerantes
+            </span>
+          </Slide>
+          <Slide>
+          <span 
+              className={`flex items-center justify-center text-center text-neutralPrivateCode-600 font-bold ${isSliderActive === "Açaís" && "text-redPrivateCode-100"}`}
+              onClick={() => {
+                setSliderActive("Açaís")
+              }}  
+            >
               Açaís
-            </div>
+            </span>
           </Slide>
         </Slider>
-
       </div>
 
       <ProductCard />

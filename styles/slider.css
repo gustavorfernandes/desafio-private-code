@@ -1,8 +1,13 @@
 @import 'swiper/css';
 @import 'swiper/css/navigation';
+@import 'swiper/css/scrollbar';
 
 .swiper {
   padding: 2rem 0;
+}
+
+.swiper-wrapper {
+  width: none;
 }
 
 .swiper-slide {
@@ -29,4 +34,12 @@
 
 .swiper-button-next::after {
   font-size: 2rem;  
+}
+
+.swiper-scrollbar {
+  background-color: white;
+}
+
+.swiper-scrollbar > * {
+  background-color: #E83737;
 }
