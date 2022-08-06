@@ -5,10 +5,6 @@ import { Slider, SliderProps, Slide } from '../utils/slider-imports'
 const settings: SliderProps = { 
   spaceBetween: 0,
   slidesPerView: 3,
-  onSlideChange(swiper) {
-    console.log("Slide change")
-  },
-
   autoHeight: true,
   navigation: false,
   scrollbar: {

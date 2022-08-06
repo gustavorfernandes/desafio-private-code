@@ -26,6 +26,7 @@ module.exports = {
         },
         "redPrivateCode": {
           100: '#E83737',         
+          200: '#C33535',         
         },
       },
       boxShadow: {

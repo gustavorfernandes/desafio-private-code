@@ -42,4 +42,6 @@
 
 .swiper-scrollbar > * {
   background-color: #E83737;
+  margin-top: 5px;
+  margin-left: -3px;
 }
