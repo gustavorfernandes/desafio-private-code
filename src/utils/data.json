@@ -52,7 +52,7 @@
     {
       "id": 8,
       "nome": "X-Salada",
-      "descricao": "Pão de brioche, 90g de carne, queijo, alface e tomate.",
+      "descricao": "Pão de brioche, 90g de carne, queijo, maionese, alface e tomate.",
       "preco": 25,
       "categoria_id": 3
     },
@@ -66,7 +66,7 @@
     {
       "id": 10,
       "nome": "X-Tudo",
-      "descricao": "Pão de brioche, 2 carnes 90g, 2 fatias de queijo, bacon e salada.",
+      "descricao": "Pão de brioche com gergelim, 2 carnes de 90g, 2 fatias de queijo, bacon, salada e molho especial.",
       "preco": 32,
       "categoria_id": 3
     },
