@@ -5,24 +5,28 @@ import { AnimatePresence, motion } from "framer-motion"
 import Loading from "./Loading"
 
 function DeliveryCard() {
-  const { openDeliveryCard, closeDeliveryCard, openSucessCard, loading, setLoading }: any = useContext(GlobalContext)
+  const { openDeliveryCard, closeDeliveryCard, openSucessCard, loading, setLoading, deliveryMethod, setDeliveryMethod, cep, setCep, district, setDistrict, number, setNumber, city, setCity, state, setState, complement, setComplement, reference, setReference, searchZipCode, clearFields }: any = useContext(GlobalContext)
 
   function submitForm(event: React.FormEvent) {
     event.preventDefault()
+
+    console.log(deliveryMethod, cep, district, number, city, state, complement, reference)
+
     setLoading(true)
     setTimeout(() => {
       setLoading(false)
       closeDeliveryCard()
     }, 3000)
-    setTimeout(()=> {
-      openSucessCard()      
+    setTimeout(() => {
+      openSucessCard()
+      clearFields()
     }, 3500)
   }
 
   return (
     <>
       <div className="w-full flex flex-col items-center">
-        <div className="w-[85%] flex items-center justify-end border-b border-b-neutral-100 pb-10 mb-2">
+        <div className="w-11/12 flex items-center justify-end border-b border-b-neutral-100 pb-10 mb-2">
           <button
             className="self-end font-poppins text-lg font-normal mt-5"
             onClick={closeDeliveryCard}
@@ -48,13 +52,19 @@ function DeliveryCard() {
                   Forma de Entrega
                 </label>
                 <select
-                  className="border border-neutralPrivateCode-300 py-2 mb-4 pl-3 rounded outline-none text-sm font-medium text-neutralPrivateCode-600 mr-3"
+                  className="border border-neutralPrivateCode-300 py-2 mb-4 pl-3 rounded outline-none text-sm font-medium text-neutralPrivateCode-600"
                   name="entrega"
+                  id="entrega"
+                  onChange={({ target }) => setDeliveryMethod(target.value)}
+                  required
                 >
-                  <option>
+                  <option value="">
+                    Selecione uma forma de entrega
+                  </option>
+                  <option value="delivery">
                     Delivery
                   </option>
-                  <option>
+                  <option value="retirada">
                     Retirada
                   </option>
                 </select>
@@ -71,10 +81,19 @@ function DeliveryCard() {
                     CEP
                   </label>
                   <input
-                    className="border py-[0.65rem] pl-4 rounded text-xs font-poppins text-neutralPrivateCode-700 outline-none"
+                    className="border py-2 pl-4 rounded text-xs font-poppins text-neutralPrivateCode-700 outline-none"
                     name="cep"
+                    id="cep"
                     placeholder="00000-000"
-                    type="number"
+                    type="text"
+                    pattern="[\d]{5}-?[\d]{3}"
+                    onChange={({ target }) => setCep(target.value)}
+                    required
+                    onBlur={({ target }) => {
+                      if (!target.validity.patternMismatch && !target.validity.valueMissing) {
+                        searchZipCode(cep, target)
+                      }
+                    }}
                   />
                 </div>
 
@@ -85,14 +104,15 @@ function DeliveryCard() {
                   >
                     Bairro
                   </label>
-                  <select
-                    className="border border-neutralPrivateCode-300 py-2 mb-4 pl-3 rounded outline-none text-sm font-medium text-neutralPrivateCode-600 w-full"
-                    name="entrega"
-                  >
-                    <option>
-                      Escolha o bairro
-                    </option>
-                  </select>
+                  <input
+                    className="border border-neutralPrivateCode-300 py-2 mb-4 pl-4 rounded outline-none text-xs font-medium text-neutralPrivateCode-600 w-full"
+                    name="bairro"
+                    id="bairro"
+                    placeholder="Bairro"
+                    value={district}
+                    onChange={({ target }) => setDistrict(target.value)}
+                    required
+                  />
                 </div>
               </div>
 
@@ -108,7 +128,12 @@ function DeliveryCard() {
                     className="border py-[0.65rem] pl-4 rounded text-xs font-nunito text-neutralPrivateCode-700 outline-none"
                     name="numero"
                     placeholder="Número"
-                    type="number"
+                    type="text"
+                    id="numero"
+                    pattern="[0-9]+$"
+                    value={number}
+                    onChange={({ target }) => setNumber(target.value)}
+                    required
                   />
                 </div>
 
@@ -123,7 +148,11 @@ function DeliveryCard() {
                     className="border py-[0.65rem] pl-4 rounded text-xs font-nunito text-neutralPrivateCode-700 outline-none"
                     name="cidade"
                     placeholder="Cidade"
+                    id="cidade"
                     type="text"
+                    value={city}
+                    onChange={({ target }) => setCity(target.value)}
+                    required
                   />
                 </div>
               </div>
@@ -138,8 +167,12 @@ function DeliveryCard() {
                 <input
                   className="border py-[0.65rem] pl-4 rounded text-xs font-nunito text-neutralPrivateCode-700 outline-none"
                   name="estado"
+                  id="estado"
                   placeholder="Estado"
                   type="text"
+                  value={state}
+                  onChange={({ target }) => setState(target.value)}
+                  required
                 />
               </div>
 
@@ -153,8 +186,11 @@ function DeliveryCard() {
                 <input
                   className="border py-[0.65rem] pl-4 rounded text-xs font-nunito text-neutralPrivateCode-700 outline-none"
                   name="complemento"
+                  id="complemento"
                   placeholder="Complemento"
                   type="text"
+                  value={complement}
+                  onChange={({ target }) => setComplement(target.value)}
                 />
               </div>
 
@@ -169,7 +205,10 @@ function DeliveryCard() {
                   className="border py-[0.65rem] pl-4 rounded text-xs font-nunito text-neutralPrivateCode-700 outline-none"
                   name="referencia"
                   placeholder="Referência"
+                  id="referencia"
                   type="text"
+                  value={reference}
+                  onChange={({ target }) => setReference(target.value)}
                 />
               </div>
             </fieldset>
@@ -177,7 +216,6 @@ function DeliveryCard() {
             <button
               className="flex items-center justify-center w-full mt-6 mb-8 bg-redPrivateCode-100 py-3 rounded hover:bg-redPrivateCode-200 transition-all disabled:bg-redPrivateCode-200"
               type="submit"
-              onClick={openDeliveryCard}
               disabled={loading}
             >
               <span className="text-white font-medium">
@@ -201,7 +239,7 @@ function DeliveryCard() {
               <Loading />
             </motion.div>
           </div>
-        }        
+        }
       </AnimatePresence>
     </>
   )

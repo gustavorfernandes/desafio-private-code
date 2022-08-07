@@ -1,0 +1,165 @@
+{
+  "produtos": [
+    {
+      "id": 1,
+      "nome": "Pizza Média",
+      "descricao": "Pizza de 30cm com sabores diversos.",
+      "preco": 45,
+      "categoria_id": 1
+    },
+    {
+      "id": 2,
+      "nome": "Pizza Família",
+      "descricao": "Pizza de 40cm com sabores diversos.",
+      "preco": 60,
+      "categoria_id": 1
+    },
+    {
+      "id": 3,
+      "nome": "Pizza Gigante",
+      "descricao": "Pizza de 50cm com sabores diversos.",
+      "preco": 75,
+      "categoria_id": 1
+    },    
+    {
+      "id": 4,
+      "nome": "Clean Combo",
+      "descricao": "X-Salada + Suco de 500ml.",
+      "preco": 37,
+      "categoria_id": 2
+    },
+    {
+      "id": 5,
+      "nome": "Combo Private",
+      "descricao": "X-tudo + Refrigerante Lata",
+      "preco": 42,
+      "categoria_id": 2
+    },
+    {
+      "id": 6,
+      "nome": "Combo Família",
+      "descricao": "Pizza família + Refrigerante 2L",
+      "preco": 75,
+      "categoria_id": 2
+    },
+    {
+      "id": 7,
+      "nome": "Combo Supreme",
+      "descricao": "Pizza gigante + Refrigerante 2L.",
+      "preco": 90,
+      "categoria_id": 2
+    },
+    {
+      "id": 8,
+      "nome": "X-Salada",
+      "descricao": "Pão de brioche, 90g de carne, queijo, alface e tomate.",
+      "preco": 25,
+      "categoria_id": 3
+    },
+    {
+      "id": 9,
+      "nome": "X-Bacon",
+      "descricao": "Pão australiano, 150g de carne, queijo e bacon.",
+      "preco": 30,
+      "categoria_id": 3
+    },
+    {
+      "id": 10,
+      "nome": "X-Tudo",
+      "descricao": "Pão de brioche, 2 carnes 90g, 2 fatias de queijo, bacon e salada.",
+      "preco": 32,
+      "categoria_id": 3
+    },
+    {
+      "id": 11,
+      "nome": "Suco Médio",
+      "descricao": "Copo de suco de 300ml sabor a definir.",
+      "preco": 8,
+      "categoria_id": 4
+    },
+    {
+      "id": 12,
+      "nome": "Suco Grande",
+      "descricao": "Copo de suco de 500ml sabor a definir.",
+      "preco": 12,
+      "categoria_id": 4
+    },
+    {
+      "id": 13,
+      "nome": "Refrigerante Lata",
+      "descricao": "Lata de refrigerante sabor a definir.",
+      "preco": 10,
+      "categoria_id": 4
+    },
+    {
+      "id": 14,
+      "nome": "Refrigerante 2L",
+      "descricao": "Refrigerante 2L sabor a definir.",
+      "preco": 15,
+      "categoria_id": 4
+    },
+    {
+      "id": 15,
+      "nome": "Açaí Médio",
+      "descricao": "Copo de açaí de 300ml.",
+      "preco": 15,
+      "categoria_id": 5
+    },
+    {
+      "id": 16,
+      "nome": "Açaí Grande",
+      "descricao": "Copo de açaí de 500ml.",
+      "preco": 23,
+      "categoria_id": 5
+    }
+  ],
+  "pedidos": [
+    {
+      "produtos": [
+        {
+          "id": 5,
+          "quantidade": 1,
+          "detalhes": "",
+          "valor": 42
+        },
+        {
+          "id": 5,
+          "quantidade": 1,
+          "detalhes": "",
+          "valor": 42
+        }
+      ],
+      "cidade": "São Paulo",
+      "estado": "SP",
+      "bairro": "Vl. Paulista",
+      "complemento": "",
+      "referencia": "Próximo ao Mercado",
+      "endereco": "Rua XPTO",
+      "numero": "123",
+      "cep": "12345-678",
+      "valor_total": 84
+    }
+  ],
+  "categorias": [
+    {
+      "id": 1,
+      "nome": "Pizzas"
+    },
+    {
+      "id": 2,
+      "nome": "Combos"
+    },
+    {
+      "id": 3,
+      "nome": "Hambúrguer"
+    },
+    {
+      "id": 4,
+      "nome": "Bebidas"
+    },
+    {
+      "id": 5,
+      "nome": "Açaí"
+    }
+  ]
+}
