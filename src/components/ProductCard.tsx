@@ -21,7 +21,7 @@ function ProductCard() {
     scrollbar">
         <div className="w-full max-h-24 flex items-center flex-wrap gap-[4%]">
           <button
-            className="w-full flex items-center bg-white shadow-container rounded-lg mb-4"
+            className="w-full flex items-center bg-white shadow-container rounded-lg mb-4 select-none"
             onClick={openOrder}
           >
 
@@ -150,9 +150,9 @@ function ProductCard() {
 
                   </div>
 
-                  <button 
+                  <button
                     className="w-11/12 flex items-center justify-center mt-4 mb-6"
-                    onClick={closeOrder}  
+                    onClick={closeOrder}
                   >
                     <div className="w-full flex items-center justify-center gap-4 bg-redPrivateCode-100 h-[5vh] rounded hover:bg-redPrivateCode-200 transition-all">
                       <span className="text-white font-sm">

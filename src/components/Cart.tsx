@@ -4,19 +4,13 @@ import { AiOutlineShoppingCart } from "@react-icons/all-files/ai/AiOutlineShoppi
 import { AiOutlineClose } from "@react-icons/all-files/ai/AiOutlineClose"
 import { MdDone } from "@react-icons/all-files/md/MdDone"
 import { AnimatePresence, motion } from "framer-motion"
-import { useState } from "react"
+import { useState, useContext } from "react"
+import { CartContext } from "../contexts/CartContext"
 import ItemCart from "./ItemCart"
+import DeliveryCard from "./DeliveryCard"
 
 function Cart() {
-  const [isActive, setActive] = useState(false)
-
-  function openCart() {
-    setActive(true)
-  }
-
-  function closeCart() {
-    setActive(false)
-  }
+  const { cart, setCart, openCart, closeCart, delivery, openDeliveryCard, closeDeliveryCard }: any = useContext(CartContext)
 
   return (
     <>
@@ -25,12 +19,12 @@ function Cart() {
         onClick={openCart}
       >
         <AiOutlineShoppingCart
-          className={`font-normal w-6 h-6 transition-all text-neutralPrivateCode-600 ${isActive && "text-neutralPrivateCode-700"}`}
+          className={`font-normal w-6 h-6 transition-all text-neutralPrivateCode-600 ${cart && "text-neutralPrivateCode-700"}`}
         />
       </button>
 
       <AnimatePresence>
-        {isActive &&
+        {cart &&
           <motion.div
             className="bg-white flex flex-col items-center  fixed rounded-sm w-full z-20 right-0 inset-y-0"
             initial={{ x: 500 }}
@@ -83,64 +77,87 @@ function Cart() {
                 </div>
 
                 <div className="w-full flex items-center justify-between px-6 py-4 bg-neutralPrivateCode-100 min-h-[4rem]">
-                  
+
                 </div>
 
                 <div className="w-full flex items-center justify-between px-6 py-4 bg-white min-h-[4rem]">
-                  
+
                 </div>
 
                 <div className="w-full flex items-center justify-between px-6 py-4 bg-neutralPrivateCode-100 min-h-[4rem]">
-                  
+
                 </div>
 
                 <div className="w-full flex items-center justify-between px-6 py-4 bg-white min-h-[4rem]">
-                  
+
                 </div>
 
                 <div className="w-full flex items-center justify-between px-6 py-4 bg-neutralPrivateCode-100 min-h-[4rem]">
-                  
-                </div>                
+
+                </div>
               </div>
 
-            <div className="w-full flex items-center justify-between px-6 py-4 border">
-              <span className="text-neutralPrivateCode-600 font-bold">
-              Total
-              </span>
-              <span className="text-greenPrivateCode-100 font-bold">
-                R$ 40,00
-              </span>              
-            </div>
+              <div className="w-full flex items-center justify-between px-6 py-4 border">
+                <span className="text-neutralPrivateCode-600 font-bold">
+                  Total
+                </span>
+                <span className="text-greenPrivateCode-100 font-bold">
+                  R$ 40,00
+                </span>
+              </div>
 
-            <div className="w-full flex items-center justify-between p-6 gap-4 mb-4">
-              <button className="flex items-center justify-center w-6/12">
-                <div className="w-full flex items-center justify-center gap-4 bg-redPrivateCode-100 py-3 rounded hover:bg-redPrivateCode-200 transition-all">
-                <MdDone
-                    color="white"
-                  />
-                  <span className="text-white font-normal">
-                    Finalizar
-                  </span>
-                </div>
-              </button>
+              <div className="w-full flex items-center justify-between p-6 gap-4 mb-4">
+                <button className="flex items-center justify-center w-6/12">
+                  <div
+                    className="w-full flex items-center justify-center gap-4 bg-redPrivateCode-100 py-3 rounded hover:bg-redPrivateCode-200 transition-all"
+                    onClick={openDeliveryCard}
+                  >
+                    <MdDone
+                      color="white"
+                    />
+                    <span className="text-white font-normal">
+                      Finalizar
+                    </span>
+                  </div>
+                </button>
 
-              <button 
-                className="flex items-center justify-center w-6/12"
-                onClick={closeCart}  
-              >
-                <div className="w-full flex items-center justify-center gap-4 bg-white border border-neutral-300 py-3 rounded">
-                  <AiOutlineClose 
-                    color="#696969"
-                  />
-                  <span className="text-neutralPrivateCode-600 font-normal">
-                    Cancelar
-                  </span>
-                </div>
-              </button>
-            </div>
+                <button
+                  className="flex items-center justify-center w-6/12"
+                  onClick={closeCart}
+                >
+                  <div className="w-full flex items-center justify-center gap-4 bg-white border border-neutral-300 py-3 rounded">
+                    <AiOutlineClose
+                      color="#696969"
+                    />
+                    <span className="text-neutralPrivateCode-600 font-normal">
+                      Cancelar
+                    </span>
+                  </div>
+                </button>
+              </div>
 
             </div>
           </motion.div>
+        }
+      </AnimatePresence>
+
+      <AnimatePresence >
+        {delivery &&
+          <>
+            <div id="overlay" className="fixed z-20 inset-0 bg-black opacity-30" onClick={closeDeliveryCard} />
+
+            <div className="w-11/12 fixed z-20 top-3">
+              <motion.div
+                className="w-full h-full bg-white flex flex-col items-center justify-center rounded-md select-none shadow-container"
+                initial={{ opacity: 0, scale: 0.5 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.5 }}
+                transition={{ duration: 0.3 }}
+              >
+                <DeliveryCard />
+              </motion.div>
+            </div>
+          </>
         }
       </AnimatePresence>
     </>
