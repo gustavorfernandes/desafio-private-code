@@ -4,13 +4,14 @@ import { AiOutlineShoppingCart } from "@react-icons/all-files/ai/AiOutlineShoppi
 import { AiOutlineClose } from "@react-icons/all-files/ai/AiOutlineClose"
 import { MdDone } from "@react-icons/all-files/md/MdDone"
 import { AnimatePresence, motion } from "framer-motion"
-import { useState, useContext } from "react"
-import { CartContext } from "../contexts/CartContext"
+import { useContext } from "react"
+import { GlobalContext } from "../contexts/GlobalContext"
 import ItemCart from "./ItemCart"
 import DeliveryCard from "./DeliveryCard"
+import SubmitSucess from "./SubmitSucess"
 
 function Cart() {
-  const { cart, setCart, openCart, closeCart, delivery, openDeliveryCard, closeDeliveryCard }: any = useContext(CartContext)
+  const { cart, openCart, closeCart, delivery, openDeliveryCard, closeDeliveryCard, isSubmitSucess, closeSucessCard }: any = useContext(GlobalContext)
 
   return (
     <>
@@ -29,7 +30,7 @@ function Cart() {
             className="bg-white flex flex-col items-center  fixed rounded-sm w-full z-20 right-0 inset-y-0"
             initial={{ x: 500 }}
             animate={{ x: - 0 }}
-            exit={{ x: 500 }}
+            exit={{ opacity: 0, scale: 0.5, x: 0 }}
             transition={{ duration: 0.35 }}
           >
             <div className="w-full flex flex-col justify-center ">
@@ -107,7 +108,7 @@ function Cart() {
               </div>
 
               <div className="w-full flex items-center justify-between p-6 gap-4 mb-4">
-                <button className="flex items-center justify-center w-6/12">
+                <button className="flex items-center justify-center w-6/12" type="button">
                   <div
                     className="w-full flex items-center justify-center gap-4 bg-redPrivateCode-100 py-3 rounded hover:bg-redPrivateCode-200 transition-all"
                     onClick={openDeliveryCard}
@@ -159,7 +160,26 @@ function Cart() {
             </div>
           </>
         }
+
+        {isSubmitSucess &&
+          <>
+            <div id="overlay" className="fixed z-20 inset-0 bg-black opacity-30" />
+
+            <div className="w-11/12 fixed z-20 top-[25vh]">
+              <motion.div
+                className="w-full h-full bg-white flex flex-col items-center justify-center rounded select-none shadow-container"
+                initial={{ opacity: 0, scale: 0.5 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.5 }}
+                transition={{ duration: 0.3 }}
+              >
+                <SubmitSucess />
+              </motion.div>
+            </div>
+          </>
+        }
       </AnimatePresence>
+
     </>
   )
 }

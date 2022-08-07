@@ -1,14 +1,22 @@
 /* eslint-disable @next/next/no-img-element */
 import { useContext } from "react"
-import { CartContext } from "../contexts/CartContext"
+import { GlobalContext } from "../contexts/GlobalContext"
+import { AnimatePresence, motion } from "framer-motion"
+import Loading from "./Loading"
 
 function DeliveryCard() {
-  const { openDeliveryCard, closeDeliveryCard }: any = useContext(CartContext)
+  const { openDeliveryCard, closeDeliveryCard, openSucessCard, loading, setLoading }: any = useContext(GlobalContext)
 
   function submitForm(event: React.FormEvent) {
     event.preventDefault()
-    closeDeliveryCard()
-    console.log("Submit success!")
+    setLoading(true)
+    setTimeout(() => {
+      setLoading(false)
+      closeDeliveryCard()
+    }, 3000)
+    setTimeout(()=> {
+      openSucessCard()      
+    }, 3500)
   }
 
   return (
@@ -167,23 +175,34 @@ function DeliveryCard() {
             </fieldset>
 
             <button
-              className="flex items-center justify-center w-full mt-6 mb-8"
+              className="flex items-center justify-center w-full mt-6 mb-8 bg-redPrivateCode-100 py-3 rounded hover:bg-redPrivateCode-200 transition-all disabled:bg-redPrivateCode-200"
               type="submit"
+              onClick={openDeliveryCard}
+              disabled={loading}
             >
-              <div
-                className="w-full flex items-center justify-center gap-4 bg-redPrivateCode-100 py-3 rounded hover:bg-redPrivateCode-200 transition-all"
-                onClick={openDeliveryCard}
-              >
-                <span className="text-white font-medium">
-                  Continuar
-                </span>
-              </div>
+              <span className="text-white font-medium">
+                Continuar
+              </span>
             </button>
           </form>
         </div>
       </div>
 
-
+      <AnimatePresence>
+        {loading &&
+          <div className="flex items-center justify center absolute z-30">
+            <motion.div
+              className="w-full h-full flex flex-col items-center justify-center select-none"
+              initial={{ opacity: 0, scale: 0.5 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.5 }}
+              transition={{ duration: 0.3 }}
+            >
+              <Loading />
+            </motion.div>
+          </div>
+        }        
+      </AnimatePresence>
     </>
   )
 }
