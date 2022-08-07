@@ -146,9 +146,9 @@ function Cart() {
           <>
             <div id="overlay" className="fixed z-20 inset-0 bg-black opacity-30" onClick={closeDeliveryCard} />
 
-            <div className="w-11/12 fixed z-20 top-3">
+            <div className="w-11/12 fixed z-20 top-4">
               <motion.div
-                className="w-full h-full bg-white flex flex-col items-center justify-center rounded-md select-none shadow-container"
+                className="w-full h-full bg-white flex flex-col items-center justify-center rounded select-none shadow-container"
                 initial={{ opacity: 0, scale: 0.5 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.5 }}
