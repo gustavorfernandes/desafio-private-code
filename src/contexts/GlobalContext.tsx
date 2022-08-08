@@ -8,41 +8,56 @@ export const ContextProvider = ({ children }: any) => {
   function filterList(category: number) {
     setCategory(category)
     console.log(category)
-  } 
-  
-  const [cart, setCart] = useState(false)
+  }
 
+  const [dataAPI, setDataAPI] = useState([])
+  const [url, setUrl] =useState("http://localhost:8080/produtos")
+
+  async function fetchDataAPI(url: string) {    
+    const options: {} = {
+      method: 'GET',
+      mode: 'cors',
+      headers: {
+        'content-type': 'application/json;charset=utf-8'
+      }
+    }
+
+    let response = await fetch(url, options)
+    let data = await response.json()
+    setDataAPI(data)
+    if (data.erro) {
+      console.log("erro")
+      return
+    }
+  }
+
+
+  const [cart, setCart] = useState(false)
   function openCart() {
     setCart(true)
   }
-
   function closeCart() {
     setCart(false)
   }
 
   const [delivery, setDelivery] = useState(false)
-
   function openDeliveryCard() {
     setDelivery(true)
   }
-
   function closeDeliveryCard() {
     setDelivery(false)
   }
 
   const [isSubmitSucess, setSubmitSucess] = useState(false)
-
   function openSucessCard() {
     setSubmitSucess(true)
   }
-
   function closeSucessCard() {
     setSubmitSucess(false)
   }
 
   const [loading, setLoading] = useState(false)
   const [dataViaCep, setDataViaCep] = useState<any>({})
-
   const [deliveryMethod, setDeliveryMethod] = useState("")
   const [cep, setCep] = useState("")
   const [district, setDistrict] = useState("")
@@ -73,13 +88,13 @@ export const ContextProvider = ({ children }: any) => {
         return
       }
       input.setCustomValidity("")
-      fillFields( await data)
+      fillFields(await data)
     }
   }
 
   function fillFields(data: any) {
-    setDistrict(data.bairro)    
-    setCity(data.localidade)    
+    setDistrict(data.bairro)
+    setCity(data.localidade)
     setState(data.uf)
   }
 
@@ -92,8 +107,9 @@ export const ContextProvider = ({ children }: any) => {
     setReference("")
   }
 
+
   return (
-    <GlobalContext.Provider value={{ category, setCategory, filterList, cart, setCart, openCart, closeCart, delivery, setDelivery, openDeliveryCard, closeDeliveryCard, isSubmitSucess, setSubmitSucess, openSucessCard, closeSucessCard, loading, setLoading, deliveryMethod, setDeliveryMethod, cep, setCep, district, setDistrict, number, setNumber, city, setCity, state, setState, complement, setComplement, reference, setReference, dataViaCep, setDataViaCep, searchZipCode, fillFields, clearFields }}>
+    <GlobalContext.Provider value={{ category, setCategory, filterList, dataAPI, setDataAPI, url, setUrl, fetchDataAPI, cart, setCart, openCart, closeCart, delivery, setDelivery, openDeliveryCard, closeDeliveryCard, isSubmitSucess, setSubmitSucess, openSucessCard, closeSucessCard, loading, setLoading, deliveryMethod, setDeliveryMethod, cep, setCep, district, setDistrict, number, setNumber, city, setCity, state, setState, complement, setComplement, reference, setReference, dataViaCep, setDataViaCep, searchZipCode, fillFields, clearFields }}>
       {children}
     </GlobalContext.Provider>
   )

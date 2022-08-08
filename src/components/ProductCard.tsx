@@ -1,13 +1,17 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable @next/next/no-img-element */
 import { AnimatePresence, motion } from "framer-motion"
-import { useState, useContext } from "react"
+import { useState, useContext, useEffect } from "react"
 import { GlobalContext } from "../contexts/GlobalContext"
 import ItemOrder from "./ItemOrder"
-import data from "../utils/db.json"
 
-/* eslint-disable @next/next/no-img-element */
 function ProductCard() {
   const [isActive, setActive] = useState(false)
-  const { category, setCategory, filterList }: any = useContext(GlobalContext)
+  const { category, dataAPI, fetchDataAPI, url }: any = useContext(GlobalContext)
+
+  useEffect(() => {
+    fetchDataAPI(url)
+  }, [])
 
   function openOrder() {
     setActive(true)
@@ -22,7 +26,7 @@ function ProductCard() {
       <div className="w-11/12 flex justify-center h-[calc(100vh-10rem)] mb-[2rem] overflow-y-scroll 
     scrollbar">
         <div className="w-full max-h-24 flex items-center flex-wrap gap-[4%]">
-          {data.produtos.map((product, index) => {
+          {dataAPI.map((product: any, index: any) => {
             if (product.categoria_id === category) {
               return (
                 <>
@@ -31,14 +35,14 @@ function ProductCard() {
                     onClick={openOrder}
                     key={index}
                   >
-                    <div className="w-10/12 flex flex-col justify-center rounded-bl-lg gap-1">
-                      <span className="font-nunito font-bold text-neutralPrivateCode-700 ml-4 text-left">
+                    <div className="w-10/12 flex flex-col justify-center rounded-bl-lg gap-1" key={index}>
+                      <span className="font-nunito font-bold text-neutralPrivateCode-700 ml-4 text-left" key={index}>
                         {product.nome}
                       </span>
-                      <span className="w-10/12 font-nunito text-xs text-neutralPrivateCode-600 ml-4 text-left mb-1">
+                      <span className="w-10/12 font-nunito text-xs text-neutralPrivateCode-600 ml-4 text-left mb-1" key={index}>
                         {product.descricao}
                       </span>
-                      <span className="font-nunito font-bold text-xs text-neutralPrivateCode-600 ml-4 text-left">
+                      <span className="font-nunito font-bold text-xs text-neutralPrivateCode-600 ml-4 text-left" key={index}>
                         {`R$ ${product.preco},00`}
                       </span>
                     </div>
@@ -47,6 +51,7 @@ function ProductCard() {
                       className="w-24 h-24 rounded-br-lg rounded-tr-lg"
                       src={`/images/products/${product.id}.jpg`}
                       alt={`Produto ${product.id}`}
+                      key={index}
                     />
                   </button>
                 </>

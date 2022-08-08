@@ -1,11 +1,20 @@
 /* eslint-disable @next/next/no-img-element */
-import React from "react"
+import React, { useContext } from "react"
+import { GlobalContext } from "../contexts/GlobalContext"
 
 function Search() {
-  
+  const { fetchDataAPI, url, setUrl }: any = useContext(GlobalContext)
+
   const handleGlobalSearch = (element : any) => {
-    element.preventDefault();
-    console.log(element.target.value)
+    element.preventDefault()
+    const { value } = element.target
+    if (!value) {
+      setUrl("http://localhost:8080/produtos")
+      fetchDataAPI(url)
+    } else {
+      setUrl(`http://localhost:8080/produtos?q=${value}`)
+      fetchDataAPI(url)
+    }
   }
   
   return (
@@ -20,18 +29,19 @@ function Search() {
             id="search"
             placeholder="Pesquisar ..."
             onChange={handleGlobalSearch}
+            onBlur={handleGlobalSearch}
           />          
         </fieldset>
       </form>
 
-      <div className="w-2/12 flex items-center justify-center bg-redPrivateCode-100 rounded-tr-md rounded-br-md cursor-pointer -ml-1">
-        <button>
+      <div className="w-2/12 flex items-center justify-center bg-redPrivateCode-100 rounded-tr-md rounded-br-md -ml-1">
+        <div>
           <img
             className="w-6 p-1"
             src="/images/search.png"
             alt="Lupa"
           />
-        </button>
+        </div>
       </div>
     </div>
   )
