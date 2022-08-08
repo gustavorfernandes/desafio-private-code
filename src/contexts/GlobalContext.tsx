@@ -3,12 +3,8 @@ import { createContext, useState } from "react"
 export const GlobalContext = createContext({})
 
 export const ContextProvider = ({ children }: any) => {
-  const [category, setCategory] = useState(0)
-
-  function filterList(category: number) {
-    setCategory(category)
-    console.log(category)
-  }
+  
+  //Requisição à API de produtos
 
   const [dataAPI, setDataAPI] = useState([])
   const [url, setUrl] =useState("http://localhost:8080/produtos")
@@ -21,7 +17,6 @@ export const ContextProvider = ({ children }: any) => {
         'content-type': 'application/json;charset=utf-8'
       }
     }
-
     let response = await fetch(url, options)
     let data = await response.json()
     setDataAPI(data)
@@ -31,8 +26,24 @@ export const ContextProvider = ({ children }: any) => {
     }
   }
 
+  //Listagem de produtos
+
+  const [category, setCategory] = useState(0)
+
+  function filterList(category: number) {
+    setCategory(category)
+    console.log(category)
+  }
+
+  //Abertura de pedido
+
+
+
+
+  //Carrinho de compras
 
   const [cart, setCart] = useState(false)
+
   function openCart() {
     setCart(true)
   }
@@ -40,21 +51,16 @@ export const ContextProvider = ({ children }: any) => {
     setCart(false)
   }
 
+  //Formulário de entrega 
+
   const [delivery, setDelivery] = useState(false)
+ 
   function openDeliveryCard() {
     setDelivery(true)
   }
   function closeDeliveryCard() {
     setDelivery(false)
-  }
-
-  const [isSubmitSucess, setSubmitSucess] = useState(false)
-  function openSucessCard() {
-    setSubmitSucess(true)
-  }
-  function closeSucessCard() {
-    setSubmitSucess(false)
-  }
+  } 
 
   const [loading, setLoading] = useState(false)
   const [dataViaCep, setDataViaCep] = useState<any>({})
@@ -67,9 +73,11 @@ export const ContextProvider = ({ children }: any) => {
   const [complement, setComplement] = useState("")
   const [reference, setReference] = useState("")
 
+  //Informações do CEP
+  
   async function searchZipCode(cep: string, input: HTMLInputElement) {
     const zipCode: string = cep.replace(/\D/g, '')
-    const url: string = `https://viacep.com.br/ws/${zipCode}/json/`
+    const urlViaCep: string = `https://viacep.com.br/ws/${zipCode}/json/`
     const options: {} = {
       method: 'GET',
       mode: 'cors',
@@ -79,10 +87,9 @@ export const ContextProvider = ({ children }: any) => {
     }
 
     if (cep) {
-      let response = await fetch(url, options)
+      let response = await fetch(urlViaCep, options)
       let data = await response.json()
       setDataViaCep(data)
-      console.log(data)
       if (data.erro) {
         input.setCustomValidity("O CEP não está válido")
         return
@@ -99,6 +106,7 @@ export const ContextProvider = ({ children }: any) => {
   }
 
   function clearFields() {
+    setCep("")
     setDistrict("")
     setNumber("")
     setCity("")
@@ -107,6 +115,16 @@ export const ContextProvider = ({ children }: any) => {
     setReference("")
   }
 
+   //Pedido realizado com sucesso
+
+   const [isSubmitSucess, setSubmitSucess] = useState(false)
+  
+   function openSucessCard() {
+     setSubmitSucess(true)
+   }
+   function closeSucessCard() {
+     setSubmitSucess(false)
+   }
 
   return (
     <GlobalContext.Provider value={{ category, setCategory, filterList, dataAPI, setDataAPI, url, setUrl, fetchDataAPI, cart, setCart, openCart, closeCart, delivery, setDelivery, openDeliveryCard, closeDeliveryCard, isSubmitSucess, setSubmitSucess, openSucessCard, closeSucessCard, loading, setLoading, deliveryMethod, setDeliveryMethod, cep, setCep, district, setDistrict, number, setNumber, city, setCity, state, setState, complement, setComplement, reference, setReference, dataViaCep, setDataViaCep, searchZipCode, fillFields, clearFields }}>

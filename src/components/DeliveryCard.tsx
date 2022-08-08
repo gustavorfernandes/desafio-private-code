@@ -3,6 +3,7 @@ import { useContext } from "react"
 import { GlobalContext } from "../contexts/GlobalContext"
 import { AnimatePresence, motion } from "framer-motion"
 import Loading from "./Loading"
+import InputMask from "react-input-mask"
 
 function DeliveryCard() {
   const { openDeliveryCard, closeDeliveryCard, openSucessCard, loading, setLoading, deliveryMethod, setDeliveryMethod, cep, setCep, district, setDistrict, number, setNumber, city, setCity, state, setState, complement, setComplement, reference, setReference, searchZipCode, clearFields }: any = useContext(GlobalContext)
@@ -29,7 +30,10 @@ function DeliveryCard() {
         <div className="w-11/12 flex items-center justify-end border-b border-b-neutral-100 pb-10 mb-2">
           <button
             className="self-end font-poppins text-lg font-normal mt-5"
-            onClick={closeDeliveryCard}
+            onClick={() => {
+              closeDeliveryCard()
+              clearFields()
+            }}
           >
             <img
               className="w-5 self-end"
@@ -80,16 +84,17 @@ function DeliveryCard() {
                   >
                     CEP
                   </label>
-                  <input
-                    className="border py-2 pl-4 rounded text-xs font-poppins text-neutralPrivateCode-700 outline-none"
+                  <InputMask
+                    className="border py-2 pl-3 rounded text-xs font-poppins text-neutralPrivateCode-700 outline-none"
                     name="cep"
                     id="cep"
-                    placeholder="00000-000"
                     type="text"
+                    mask="99999-999"
+                    alwaysShowMask={true}
                     pattern="[\d]{5}-?[\d]{3}"
-                    onChange={({ target }) => setCep(target.value)}
+                    onChange={({ target }: any) => setCep(target.value)}
                     required
-                    onBlur={({ target }) => {
+                    onBlur={({ target }: any) => {
                       if (!target.validity.patternMismatch && !target.validity.valueMissing) {
                         searchZipCode(cep, target)
                       }
