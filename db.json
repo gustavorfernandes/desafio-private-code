@@ -20,7 +20,7 @@
       "descricao": "Pizza de 50cm com sabores diversos.",
       "preco": 75,
       "categoria_id": 1
-    },    
+    },
     {
       "id": 4,
       "nome": "Clean Combo",
@@ -117,27 +117,42 @@
     {
       "produtos": [
         {
-          "id": 5,
+          "id": 9,
           "quantidade": 1,
-          "detalhes": "",
-          "valor": 42
-        },
-        {
-          "id": 5,
-          "quantidade": 1,
-          "detalhes": "",
-          "valor": 42
+          "detalhes": "Sem salada",
+          "valor": 30
         }
       ],
-      "cidade": "São Paulo",
-      "estado": "SP",
-      "bairro": "Vl. Paulista",
-      "complemento": "",
-      "referencia": "Próximo ao Mercado",
-      "endereco": "Rua XPTO",
-      "numero": "123",
-      "cep": "12345-678",
-      "valor_total": 84
+      "bairro": "Jardim Sulacap",
+      "cep": "21741-060",
+      "cidade": "Rio de Janeiro",
+      "complemento": "Bloco 04 Ap 301",
+      "endereco": "Rua Olímpio de Castro",
+      "forma_de_entrega": "delivery",
+      "numero": "931",
+      "referencia": "Ao lado da igreja católica",
+      "valor_total": 30,
+      "id": 1
+    },
+    {
+      "produtos": [
+        {
+          "id": 9,
+          "quantidade": 1,
+          "detalhes": "Sem salada",
+          "valor": 30
+        }
+      ],
+      "bairro": "Pavuna",
+      "cep": "21520-180",
+      "cidade": "Rio de Janeiro",
+      "complemento": "Entrada 28",
+      "endereco": "Rua Albertina Guerra",
+      "forma_de_entrega": "retirada",
+      "numero": "29",
+      "referencia": "",
+      "valor_total": 30,
+      "id": 2
     }
   ],
   "categorias": [

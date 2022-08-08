@@ -1,15 +1,16 @@
 import { createContext, useState } from "react"
+import axios from "axios"
 
 export const GlobalContext = createContext({})
 
 export const ContextProvider = ({ children }: any) => {
-  
+
   //Requisição à API de produtos
 
   const [dataAPI, setDataAPI] = useState([])
-  const [url, setUrl] =useState("http://localhost:8080/produtos")
+  const [url, setUrl] = useState("http://localhost:8080/produtos")
 
-  async function fetchDataAPI(url: string) {    
+  async function fetchDataAPI(url: string) {
     const options: {} = {
       method: 'GET',
       mode: 'cors',
@@ -37,8 +38,16 @@ export const ContextProvider = ({ children }: any) => {
 
   //Abertura de pedido
 
+  const [order, setOrder] = useState({})
+  const [orderActive, setOrderActive] = useState(false)
 
+  function openOrder() {
+    setOrderActive(true)
+  }
 
+  function closeOrder() {
+    setOrderActive(false)
+  }
 
   //Carrinho de compras
 
@@ -54,13 +63,13 @@ export const ContextProvider = ({ children }: any) => {
   //Formulário de entrega 
 
   const [delivery, setDelivery] = useState(false)
- 
+
   function openDeliveryCard() {
     setDelivery(true)
   }
   function closeDeliveryCard() {
     setDelivery(false)
-  } 
+  }
 
   const [loading, setLoading] = useState(false)
   const [dataViaCep, setDataViaCep] = useState<any>({})
@@ -69,12 +78,12 @@ export const ContextProvider = ({ children }: any) => {
   const [district, setDistrict] = useState("")
   const [number, setNumber] = useState("")
   const [city, setCity] = useState("")
-  const [state, setState] = useState("")
+  const [address, setAddress] = useState("")
   const [complement, setComplement] = useState("")
   const [reference, setReference] = useState("")
 
-  //Informações do CEP
-  
+  //Integração com a viaCEP
+
   async function searchZipCode(cep: string, input: HTMLInputElement) {
     const zipCode: string = cep.replace(/\D/g, '')
     const urlViaCep: string = `https://viacep.com.br/ws/${zipCode}/json/`
@@ -100,34 +109,65 @@ export const ContextProvider = ({ children }: any) => {
   }
 
   function fillFields(data: any) {
-    setDistrict(data.bairro)
     setCity(data.localidade)
-    setState(data.uf)
+    setAddress(data.logradouro)
+    setDistrict(data.bairro)
   }
 
   function clearFields() {
     setCep("")
-    setDistrict("")
-    setNumber("")
     setCity("")
-    setState("")
+    setAddress("")
+    setNumber("")
+    setDistrict("")
     setComplement("")
     setReference("")
   }
 
-   //Pedido realizado com sucesso
+  //Pedido realizado com sucesso
 
-   const [isSubmitSucess, setSubmitSucess] = useState(false)
-  
-   function openSucessCard() {
-     setSubmitSucess(true)
-   }
-   function closeSucessCard() {
-     setSubmitSucess(false)
-   }
+  const [isSubmitSucess, setSubmitSucess] = useState(false)
+
+  function openSucessCard() {
+    setSubmitSucess(true)
+  }
+  function closeSucessCard() {
+    setSubmitSucess(false)
+  }
+
+  //Envio do pedido para a API
+
+  function sendOrderData() {
+    const urlOrder = 'http://localhost:8080/pedidos/'
+    axios.post(urlOrder, {
+      produtos: [
+        {
+          id: 9,
+          quantidade: 1,
+          detalhes: "Sem salada",
+          valor: 30
+        }
+      ],
+      bairro: district,
+      cep: cep,
+      cidade: city,
+      complemento: complement,
+      endereco: address,
+      forma_de_entrega: deliveryMethod,
+      numero: number,
+      referencia: reference,
+      valor_total: 30
+    })
+      .then(() => {
+        console.log("Pedido enviado com sucesso!")
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+  }
 
   return (
-    <GlobalContext.Provider value={{ category, setCategory, filterList, dataAPI, setDataAPI, url, setUrl, fetchDataAPI, cart, setCart, openCart, closeCart, delivery, setDelivery, openDeliveryCard, closeDeliveryCard, isSubmitSucess, setSubmitSucess, openSucessCard, closeSucessCard, loading, setLoading, deliveryMethod, setDeliveryMethod, cep, setCep, district, setDistrict, number, setNumber, city, setCity, state, setState, complement, setComplement, reference, setReference, dataViaCep, setDataViaCep, searchZipCode, fillFields, clearFields }}>
+    <GlobalContext.Provider value={{ dataAPI, setDataAPI, url, setUrl, fetchDataAPI, category, setCategory, filterList, order, setOrder, orderActive, setOrderActive, openOrder, closeOrder, cart, setCart, openCart, closeCart, delivery, setDelivery, openDeliveryCard, closeDeliveryCard, loading, setLoading, deliveryMethod, setDeliveryMethod, cep, setCep, district, setDistrict, number, setNumber, city, setCity, complement, setComplement, address, setAddress, reference, setReference, dataViaCep, setDataViaCep, searchZipCode, fillFields, clearFields, isSubmitSucess, setSubmitSucess, openSucessCard, closeSucessCard, sendOrderData }}>
       {children}
     </GlobalContext.Provider>
   )

@@ -6,12 +6,12 @@ import Loading from "./Loading"
 import InputMask from "react-input-mask"
 
 function DeliveryCard() {
-  const { openDeliveryCard, closeDeliveryCard, openSucessCard, loading, setLoading, deliveryMethod, setDeliveryMethod, cep, setCep, district, setDistrict, number, setNumber, city, setCity, state, setState, complement, setComplement, reference, setReference, searchZipCode, clearFields }: any = useContext(GlobalContext)
+  const { closeDeliveryCard, openSucessCard, loading, setLoading, setDeliveryMethod, cep, setCep, district, setDistrict, number, setNumber, city, setCity, reference, setReference, complement, setComplement, address, setAddress, searchZipCode, clearFields, sendOrderData }: any = useContext(GlobalContext)
 
   function submitForm(event: React.FormEvent) {
-    event.preventDefault()
-
-    console.log(deliveryMethod, cep, district, number, city, state, complement, reference)
+    event.preventDefault()   
+    
+    sendOrderData()
 
     setLoading(true)
     setTimeout(() => {
@@ -102,23 +102,42 @@ function DeliveryCard() {
                   />
                 </div>
 
-                <div className="w-8/12 flex flex-col gap-2">
+                <div className="w-8/12 flex flex-col gap-2 mb-4">
                   <label
                     className="text-sm font-medium text-neutralPrivateCode-700"
-                    htmlFor="bairro"
+                    htmlFor="cidade"
                   >
-                    Bairro
+                    Cidade
                   </label>
                   <input
-                    className="border border-neutralPrivateCode-300 py-2 mb-4 pl-4 rounded outline-none text-xs font-medium text-neutralPrivateCode-600 w-full"
-                    name="bairro"
-                    id="bairro"
-                    placeholder="Bairro"
-                    value={district}
-                    onChange={({ target }) => setDistrict(target.value)}
+                    className="border py-[0.65rem] pl-4 rounded text-xs font-nunito text-neutralPrivateCode-700 outline-none"
+                    name="cidade"
+                    placeholder="Cidade"
+                    id="cidade"
+                    type="text"
+                    value={city}
+                    onChange={({ target }) => setCity(target.value)}
                     required
                   />
-                </div>
+                </div>                
+              </div>
+
+              <div className="w-11/12 flex flex-col gap-2 mb-4">
+                <label
+                  className="text-sm font-medium text-neutralPrivateCode-700"
+                  htmlFor="complemento"
+                >
+                  Endereço
+                </label>
+                <input
+                  className="border py-[0.65rem] pl-4 rounded text-xs font-nunito text-neutralPrivateCode-700 outline-none"
+                  name="endereco"
+                  id="endereco"
+                  placeholder="Endereço"
+                  type="text"
+                  value={address}
+                  onChange={({ target }) => setAddress(target.value)}
+                />
               </div>
 
               <div className="w-11/12 flex items-center gap-4 justify-between">
@@ -142,21 +161,20 @@ function DeliveryCard() {
                   />
                 </div>
 
-                <div className="w-8/12 flex flex-col gap-2 mb-4">
+                <div className="w-8/12 flex flex-col gap-2">
                   <label
                     className="text-sm font-medium text-neutralPrivateCode-700"
-                    htmlFor="cidade"
+                    htmlFor="bairro"
                   >
-                    Cidade
+                    Bairro
                   </label>
                   <input
-                    className="border py-[0.65rem] pl-4 rounded text-xs font-nunito text-neutralPrivateCode-700 outline-none"
-                    name="cidade"
-                    placeholder="Cidade"
-                    id="cidade"
-                    type="text"
-                    value={city}
-                    onChange={({ target }) => setCity(target.value)}
+                    className="border border-neutralPrivateCode-300 py-2 mb-4 pl-4 rounded outline-none text-xs font-medium text-neutralPrivateCode-600 w-full"
+                    name="bairro"
+                    id="bairro"
+                    placeholder="Bairro"
+                    value={district}
+                    onChange={({ target }) => setDistrict(target.value)}
                     required
                   />
                 </div>
@@ -167,35 +185,17 @@ function DeliveryCard() {
                   className="text-sm font-medium text-neutralPrivateCode-700"
                   htmlFor="estado"
                 >
-                  Estado
-                </label>
-                <input
-                  className="border py-[0.65rem] pl-4 rounded text-xs font-nunito text-neutralPrivateCode-700 outline-none"
-                  name="estado"
-                  id="estado"
-                  placeholder="Estado"
-                  type="text"
-                  value={state}
-                  onChange={({ target }) => setState(target.value)}
-                  required
-                />
-              </div>
-
-              <div className="w-11/12 flex flex-col gap-2 mb-4">
-                <label
-                  className="text-sm font-medium text-neutralPrivateCode-700"
-                  htmlFor="complemento"
-                >
                   Complemento
                 </label>
                 <input
                   className="border py-[0.65rem] pl-4 rounded text-xs font-nunito text-neutralPrivateCode-700 outline-none"
                   name="complemento"
                   id="complemento"
-                  placeholder="Complemento"
+                  placeholder="complemento"
                   type="text"
                   value={complement}
                   onChange={({ target }) => setComplement(target.value)}
+                  required
                 />
               </div>
 

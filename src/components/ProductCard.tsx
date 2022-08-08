@@ -1,25 +1,16 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @next/next/no-img-element */
 import { AnimatePresence, motion } from "framer-motion"
-import { useState, useContext, useEffect } from "react"
+import { useContext, useEffect } from "react"
 import { GlobalContext } from "../contexts/GlobalContext"
 import ItemOrder from "./ItemOrder"
 
 function ProductCard() {
-  const [isActive, setActive] = useState(false)
-  const { category, dataAPI, fetchDataAPI, url }: any = useContext(GlobalContext)
+  const { category, dataAPI, fetchDataAPI, url, openOrder, closeOrder, orderActive }: any = useContext(GlobalContext)
 
   useEffect(() => {
     fetchDataAPI(url)
   }, [])
-
-  function openOrder() {
-    setActive(true)
-  }
-
-  function closeOrder() {
-    setActive(false)
-  }
 
   return (
     <>
@@ -91,7 +82,7 @@ function ProductCard() {
       </div >
 
       <AnimatePresence>
-        {isActive &&
+        {orderActive &&
           <>
             <div id="overlay" className="fixed z-10 inset-0 bg-black opacity-30" onClick={closeOrder} />
 
