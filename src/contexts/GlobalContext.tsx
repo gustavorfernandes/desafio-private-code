@@ -39,9 +39,28 @@ export const ContextProvider = ({ children }: any) => {
   //Abertura de pedido
 
   const [order, setOrder] = useState({})
+  const [orderPrice, setOrderPrice] = useState(0)
   const [orderActive, setOrderActive] = useState(false)
+  const [product, setProduct] = useState("")
 
-  function openOrder() {
+  async function fetchProductData(url: string) {
+    const options: {} = {
+      method: 'GET',
+      mode: 'cors',
+      headers: {
+        'content-type': 'application/json;charset=utf-8'
+      }
+    }
+    let response = await fetch(url, options)
+    let data = await response.json()
+    setProduct(data)    
+    if (data.erro) {
+      console.log("erro")
+      return
+    }
+  }
+  
+  function openOrder() { 
     setOrderActive(true)
   }
 
@@ -167,7 +186,7 @@ export const ContextProvider = ({ children }: any) => {
   }
 
   return (
-    <GlobalContext.Provider value={{ dataAPI, setDataAPI, url, setUrl, fetchDataAPI, category, setCategory, filterList, order, setOrder, orderActive, setOrderActive, openOrder, closeOrder, cart, setCart, openCart, closeCart, delivery, setDelivery, openDeliveryCard, closeDeliveryCard, loading, setLoading, deliveryMethod, setDeliveryMethod, cep, setCep, district, setDistrict, number, setNumber, city, setCity, complement, setComplement, address, setAddress, reference, setReference, dataViaCep, setDataViaCep, searchZipCode, fillFields, clearFields, isSubmitSucess, setSubmitSucess, openSucessCard, closeSucessCard, sendOrderData }}>
+    <GlobalContext.Provider value={{ dataAPI, setDataAPI, url, setUrl, fetchDataAPI, category, setCategory, filterList, order, setOrder, orderPrice, setOrderPrice, orderActive, setOrderActive, openOrder, closeOrder, product, setProduct, fetchProductData, cart, setCart, openCart, closeCart, delivery, setDelivery, openDeliveryCard, closeDeliveryCard, loading, setLoading, deliveryMethod, setDeliveryMethod, cep, setCep, district, setDistrict, number, setNumber, city, setCity, complement, setComplement, address, setAddress, reference, setReference, dataViaCep, setDataViaCep, searchZipCode, fillFields, clearFields, isSubmitSucess, setSubmitSucess, openSucessCard, closeSucessCard, sendOrderData }}>
       {children}
     </GlobalContext.Provider>
   )

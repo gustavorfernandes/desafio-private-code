@@ -4,13 +4,19 @@ import { AnimatePresence, motion } from "framer-motion"
 import { useContext, useEffect } from "react"
 import { GlobalContext } from "../contexts/GlobalContext"
 import ItemOrder from "./ItemOrder"
+import Counter from "./Counter"
 
 function ProductCard() {
-  const { category, dataAPI, fetchDataAPI, url, openOrder, closeOrder, orderActive }: any = useContext(GlobalContext)
+  const { category, dataAPI, fetchDataAPI, url, openOrder, closeOrder, orderActive, fetchProductData, product, orderPrice, setOrderPrice }: any = useContext(GlobalContext)
 
   useEffect(() => {
     fetchDataAPI(url)
   }, [])
+
+  const openProductOrder = (id: number) => {
+    fetchProductData(`http://localhost:8080/produtos/${id}/`)
+    openOrder()
+  }
 
   return (
     <>
@@ -23,7 +29,9 @@ function ProductCard() {
                 <>
                   <button
                     className="w-full py-1 flex items-center bg-white shadow-container rounded-lg mb-4 select-none"
-                    onClick={openOrder}
+                    onClick={() => {
+                      openProductOrder(product.id)
+                    }}
                     key={index}
                   >
                     <div className="w-10/12 flex flex-col justify-center rounded-bl-lg gap-1" key={index}>
@@ -54,16 +62,19 @@ function ProductCard() {
                 <>
                   <button
                     className="w-full py-1 flex items-center bg-white shadow-container rounded-lg mb-4 select-none"
-                    onClick={openOrder}
+                    onClick={() => {
+                      openProductOrder(product.id)
+                    }}
+                    key={index}
                   >
-                    <div className="w-10/12 flex flex-col justify-center rounded-bl-lg gap-1">
-                      <span className="font-nunito font-bold text-neutralPrivateCode-700 ml-4 text-left">
+                    <div className="w-10/12 flex flex-col justify-center rounded-bl-lg gap-1" key={index}>
+                      <span className="font-nunito font-bold text-neutralPrivateCode-700 ml-4 text-left" key={index}>
                         {product.nome}
                       </span>
-                      <span className="w-10/12 font-nunito text-xs text-neutralPrivateCode-600 ml-4 text-left mb-1">
+                      <span className="w-10/12 font-nunito text-xs text-neutralPrivateCode-600 ml-4 text-left mb-1" key={index}>
                         {product.descricao}
                       </span>
-                      <span className="font-nunito font-bold text-xs text-neutralPrivateCode-600 ml-4 text-left">
+                      <span className="font-nunito font-bold text-xs text-neutralPrivateCode-600 ml-4 text-left" key={index}>
                         {`R$ ${product.preco},00`}
                       </span>
                     </div>
@@ -72,6 +83,7 @@ function ProductCard() {
                       className="w-24 h-24 rounded-br-lg rounded-tr-lg"
                       src={`/images/products/${product.id}.jpg`}
                       alt={`Produto ${product.id}`}
+                      key={index}
                     />
                   </button>
                 </>
@@ -109,95 +121,97 @@ function ProductCard() {
                   <div className="w-11/12 flex items-center justify-center rounded">
                     <img
                       className="w-full h-64 rounded"
-                      src="/images/product-1.png"
-                      alt="Produto 1"
+                      src={`/images/products/${product.id}.jpg`}
+                      alt={`Produto ${product.id}`}
                     />
                   </div>
                 </div>
 
                 <div className="w-full flex flex-col items-center justify-center">
+                  <>
 
-                  <div className="w-11/12 flex flex-col items-center justify-center border-b pb-3">
-                    <div className="w-full bg-neutralPrivateCode-300 mt-4 rounded">
-                      <div className="flex justify-between items-start w-full py-3 px-3">
-                        <div className="flex flex-col justify-center">
-                          <span className="text-neutralPrivateCode-700">
-                            Pizza G + Coca 2 lt
-                          </span>
-                          <span className="text-xs text-neutralPrivateCode-600">
-                            2 Sabores
-                          </span>
-                          <span className="text-xs text-neutralPrivateCode-600">
-                            Escolha 1 opção
-                          </span>
+                    <div className="w-11/12 flex flex-col items-center justify-center border-b pb-3">
+                      <div className="w-full bg-neutralPrivateCode-300 mt-4 rounded">
+                        <div className="flex justify-between items-start w-full py-3 px-3">
+                          <div className="flex flex-col justify-center">
+                            <span className="text-neutralPrivateCode-700">
+                              {product.nome}
+                            </span>
+                            <span className="text-xs text-neutralPrivateCode-600 w-10/12">
+                              {product.descricao}
+                            </span>
+                          </div>
+                          <div className="flex flex-col items-end justify-center gap-4">
+                            <span className="bg-neutralPrivateCode-400 py-1 px-2 rounded-md text-xs font-bold text-neutralPrivateCode-600">
+                              Obrigatório
+                            </span>
+                            <span className="text-neutral-600 text-xs">
+                              {`R$ ${product.preco},00`}
+                            </span>
+                          </div>
                         </div>
-                        <div className="flex flex-col items-end justify-center gap-4">
-                          <span className="bg-neutralPrivateCode-400 py-1 px-2 rounded-md text-xs font-bold text-neutralPrivateCode-600">
-                            Obrigatório
-                          </span>
-                          <span className="text-neutral-600 text-xs">
-                            R$ 40,00
-                          </span>
-                        </div>
-                      </div>
 
-                    </div>
-                  </div>
-
-                  <div className="w-full flex items-center justify-between px-6 pt-4 mb-4">
-                    <span className="w-4/12 text-xs text-neutralPrivateCode-700 font-nunito">
-                      Produto
-                    </span>
-                    <span className="w-4/12 text-xs text-neutralPrivateCode-700 font-nunito text-center">
-                      Valor
-                    </span>
-                    <span className="w-3/12 text-xs text-neutralPrivateCode-700 font-nunito text-right">
-                      Quantidade
-                    </span>
-                  </div>
-
-                  <div className="w-11/12 flex flex-col overflow-y-scroll scrollbar h-[15vh]  mb-3">
-                    <div className="w-full flex flex-col items-center">
-                      <div className="w-full flex items-center justify-between px-3 py-2 bg-neutralPrivateCode-100 min-h-[4rem]">
-                        <ItemOrder />
-                      </div>
-
-                      <div className="w-full flex items-center justify-between px-3 py-2 bg-white min-h-[4rem]">
-                        <ItemOrder />
-                      </div>
-
-                      <div className="w-full flex items-center justify-between px-3 py-2 bg-neutralPrivateCode-100 min-h-[4rem]">
-                        <ItemOrder />
-                      </div>
-
-                      <div className="w-full flex items-center justify-between px-3 py-2 bg-white min-h-[4rem]">
-                        <ItemOrder />
                       </div>
                     </div>
-                  </div>
 
-                  <div className="w-11/12 flex items-center justify-center border-b border-t border-b-neutralPrivateCode-200 border-t-neutralPrivateCode-200">
-                    <div className="w-11/12 flex items-center justify-between px-3 py-4 ">
-                      <span className="text-neutralPrivateCode-600 font-bold">
-                        Total
+                    <div className="w-full flex items-center justify-between px-6 pt-4 mb-4">
+                      <span className="w-4/12 text-xs text-neutralPrivateCode-700 font-nunito">
+                        Produto
                       </span>
-                      <span className="text-greenPrivateCode-100 font-bold">
-                        R$ 40,00
+                      <span className="w-4/12 text-xs text-neutralPrivateCode-700 font-nunito text-center">
+                        Valor
+                      </span>
+                      <span className="w-3/12 text-xs text-neutralPrivateCode-700 font-nunito text-right">
+                        Quantidade
                       </span>
                     </div>
 
-                  </div>
+                    <div className="w-11/12 flex flex-col overflow-y-scroll scrollbar h-[15vh]  mb-3">
+                      <div className="w-full flex flex-col items-center">
 
-                  <button
-                    className="w-11/12 flex items-center justify-center mt-4 mb-6"
-                    onClick={closeOrder}
-                  >
-                    <div className="w-full flex items-center justify-center gap-4 bg-redPrivateCode-100 h-[5vh] rounded hover:bg-redPrivateCode-200 transition-all">
-                      <span className="text-white font-sm">
-                        Adicionar
-                      </span>
+                        {product &&
+
+                          product.adicionais.map((item: any) => (
+                            <div className="w-full flex items-center justify-between px-3 py-2 bg-neutralPrivateCode-100 min-h-[4rem]" key={item.nome}>
+                              <div className="w-5/12 flex flex-col justify-center text-xs text-neutralPrivateCode-700 font-nunito">
+                                <span>
+                                  {item.nome}
+                                </span>
+                              </div>
+                              <span className="w-6/12 text-xs text-neutralPrivateCode-700 font-nunito text-center">
+                                {`R$ ${item.valor},00`}
+                              </span>
+                              <div className="w-3/12 text-xs text-neutralPrivateCode-700 font-nunito">
+                                <Counter />
+                              </div>
+                            </div>
+                          ))}
+                      </div>
                     </div>
-                  </button>
+
+                    <div className="w-11/12 flex items-center justify-center border-b border-t border-b-neutralPrivateCode-200 border-t-neutralPrivateCode-200">
+                      <div className="w-11/12 flex items-center justify-between px-3 py-4 ">
+                        <span className="text-neutralPrivateCode-600 font-bold">
+                          Total
+                        </span>
+                        <span className="text-greenPrivateCode-100 font-bold">
+                          {`R$ ${orderPrice},00`}
+                        </span>
+                      </div>
+
+                    </div>
+
+                    <button
+                      className="w-11/12 flex items-center justify-center mt-4 mb-6"
+                      onClick={closeOrder}
+                    >
+                      <div className="w-full flex items-center justify-center gap-4 bg-redPrivateCode-100 h-[5vh] rounded hover:bg-redPrivateCode-200 transition-all">
+                        <span className="text-white font-sm">
+                          Adicionar
+                        </span>
+                      </div>
+                    </button>
+                  </>
                 </div>
               </motion.div>
             </div>

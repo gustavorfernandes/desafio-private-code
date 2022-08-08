@@ -137,6 +137,7 @@ function DeliveryCard() {
                   type="text"
                   value={address}
                   onChange={({ target }) => setAddress(target.value)}
+                  required
                 />
               </div>
 
@@ -195,7 +196,6 @@ function DeliveryCard() {
                   type="text"
                   value={complement}
                   onChange={({ target }) => setComplement(target.value)}
-                  required
                 />
               </div>
 
