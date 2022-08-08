@@ -1,11 +1,13 @@
 import { AnimatePresence, motion } from "framer-motion"
-import { useState } from "react"
-import Item from "./ItemCart"
+import { useState, useContext } from "react"
+import { GlobalContext } from "../contexts/GlobalContext"
 import ItemOrder from "./ItemOrder"
+import data from "../utils/db.json"
 
 /* eslint-disable @next/next/no-img-element */
 function ProductCard() {
   const [isActive, setActive] = useState(false)
+  const { category, setCategory, filterList }: any = useContext(GlobalContext)
 
   function openOrder() {
     setActive(true)
@@ -20,26 +22,66 @@ function ProductCard() {
       <div className="w-11/12 flex justify-center h-[calc(100vh-10rem)] mb-[2rem] overflow-y-scroll 
     scrollbar">
         <div className="w-full max-h-24 flex items-center flex-wrap gap-[4%]">
-          <button
-            className="w-full flex items-center bg-white shadow-container rounded-lg mb-4 select-none"
-            onClick={openOrder}
-          >
+          {data.produtos.map((product, index) => {
+            if (product.categoria_id === category) {
+              return (
+                <>
+                  <button
+                    className="w-full py-1 flex items-center bg-white shadow-container rounded-lg mb-4 select-none"
+                    onClick={openOrder}
+                    key={index}
+                  >
+                    <div className="w-10/12 flex flex-col justify-center rounded-bl-lg gap-1">
+                      <span className="font-nunito font-bold text-neutralPrivateCode-700 ml-4 text-left">
+                        {product.nome}
+                      </span>
+                      <span className="w-10/12 font-nunito text-xs text-neutralPrivateCode-600 ml-4 text-left mb-1">
+                        {product.descricao}
+                      </span>
+                      <span className="font-nunito font-bold text-xs text-neutralPrivateCode-600 ml-4 text-left">
+                        {`R$ ${product.preco},00`}
+                      </span>
+                    </div>
 
-            <div className="w-10/12 flex flex-col justify-center gap-1 rounded-bl-lg ">
-              <span className="font-nunito font-bold text-neutralPrivateCode-700 ml-4 text-left">
-                Pizza G + Coca 2lt
-              </span>
-              <span className="font-nunito font-bold text-sm text-neutralPrivateCode-600 ml-4 text-left">
-                R$ 40,00
-              </span>
-            </div>
+                    <img
+                      className="w-24 h-24 rounded-br-lg rounded-tr-lg"
+                      src={`/images/products/${product.id}.jpg`}
+                      alt={`Produto ${product.id}`}
+                    />
+                  </button>
+                </>
+              )
+            }
 
-            <img
-              className="w-4/12 h-4/12 rounded-br-lg rounded-tr-lg"
-              src="/images/product-1.png"
-              alt="Produto 1"
-            />
-          </button>
+            if (category === 0) {
+              return (
+                <>
+                  <button
+                    className="w-full py-1 flex items-center bg-white shadow-container rounded-lg mb-4 select-none"
+                    onClick={openOrder}
+                  >
+                    <div className="w-10/12 flex flex-col justify-center rounded-bl-lg gap-1">
+                      <span className="font-nunito font-bold text-neutralPrivateCode-700 ml-4 text-left">
+                        {product.nome}
+                      </span>
+                      <span className="w-10/12 font-nunito text-xs text-neutralPrivateCode-600 ml-4 text-left mb-1">
+                        {product.descricao}
+                      </span>
+                      <span className="font-nunito font-bold text-xs text-neutralPrivateCode-600 ml-4 text-left">
+                        {`R$ ${product.preco},00`}
+                      </span>
+                    </div>
+
+                    <img
+                      className="w-24 h-24 rounded-br-lg rounded-tr-lg"
+                      src={`/images/products/${product.id}.jpg`}
+                      alt={`Produto ${product.id}`}
+                    />
+                  </button>
+                </>
+              )
+            }
+          })}
         </div>
       </div >
 

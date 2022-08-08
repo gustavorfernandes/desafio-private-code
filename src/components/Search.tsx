@@ -1,5 +1,13 @@
 /* eslint-disable @next/next/no-img-element */
+import React from "react"
+
 function Search() {
+  
+  const handleGlobalSearch = (element : any) => {
+    element.preventDefault();
+    console.log(element.target.value)
+  }
+  
   return (
     <div className="flex w-10/12">
       <form className="w-10/12">
@@ -9,7 +17,9 @@ function Search() {
             className="w-full border border-neutralPrivateCode-500 rounded-tl-md rounded-bl-md font-nunito font-medium text-xs pl-5 py-3 outline-none text-neutralPrivateCode-700"
             type="text"
             name="search"
+            id="search"
             placeholder="Pesquisar ..."
+            onChange={handleGlobalSearch}
           />          
         </fieldset>
       </form>

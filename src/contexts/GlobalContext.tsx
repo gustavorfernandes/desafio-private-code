@@ -3,6 +3,13 @@ import { createContext, useState } from "react"
 export const GlobalContext = createContext({})
 
 export const ContextProvider = ({ children }: any) => {
+  const [category, setCategory] = useState(0)
+
+  function filterList(category: number) {
+    setCategory(category)
+    console.log(category)
+  } 
+  
   const [cart, setCart] = useState(false)
 
   function openCart() {
@@ -86,7 +93,7 @@ export const ContextProvider = ({ children }: any) => {
   }
 
   return (
-    <GlobalContext.Provider value={{ cart, setCart, openCart, closeCart, delivery, setDelivery, openDeliveryCard, closeDeliveryCard, isSubmitSucess, setSubmitSucess, openSucessCard, closeSucessCard, loading, setLoading, deliveryMethod, setDeliveryMethod, cep, setCep, district, setDistrict, number, setNumber, city, setCity, state, setState, complement, setComplement, reference, setReference, dataViaCep, setDataViaCep, searchZipCode, fillFields, clearFields }}>
+    <GlobalContext.Provider value={{ category, setCategory, filterList, cart, setCart, openCart, closeCart, delivery, setDelivery, openDeliveryCard, closeDeliveryCard, isSubmitSucess, setSubmitSucess, openSucessCard, closeSucessCard, loading, setLoading, deliveryMethod, setDeliveryMethod, cep, setCep, district, setDistrict, number, setNumber, city, setCity, state, setState, complement, setComplement, reference, setReference, dataViaCep, setDataViaCep, searchZipCode, fillFields, clearFields }}>
       {children}
     </GlobalContext.Provider>
   )

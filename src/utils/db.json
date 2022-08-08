@@ -31,14 +31,14 @@
     {
       "id": 5,
       "nome": "Combo Private",
-      "descricao": "X-tudo + Refrigerante Lata",
+      "descricao": "X-tudo + Refrigerante Lata.",
       "preco": 42,
       "categoria_id": 2
     },
     {
       "id": 6,
       "nome": "Combo Família",
-      "descricao": "Pizza família + Refrigerante 2L",
+      "descricao": "Pizza família + Refrigerante 2L.",
       "preco": 75,
       "categoria_id": 2
     },
@@ -66,7 +66,7 @@
     {
       "id": 10,
       "nome": "X-Tudo",
-      "descricao": "Pão de brioche com gergelim, 2 carnes de 90g, 2 fatias de queijo, bacon, salada e molho especial.",
+      "descricao": "Pão de brioche, 2 carnes de 90g, queijo, bacon, salada e molho especial.",
       "preco": 32,
       "categoria_id": 3
     },

@@ -1,4 +1,5 @@
-import { useState } from "react"
+import { useContext } from "react"
+import { GlobalContext } from "../contexts/GlobalContext"
 import ProductCard from "../components/ProductCard"
 import { Slider, SliderProps, Slide } from '../utils/slider-imports'
 
@@ -13,7 +14,7 @@ const settings: SliderProps = {
 }
 
 function Content() {
-  const [isSliderActive, setSliderActive] = useState("Pizzas")
+  const { category, setCategory }: any = useContext(GlobalContext)
   
   return (
     <div className="w-screen h-[calc(100vh-192px)] flex flex-col items-center -z-1 pt-8 gap-8">
@@ -24,9 +25,13 @@ function Content() {
         >
           <Slide>
             <span 
-              className={`flex items-center justify-center text-center text-neutralPrivateCode-600 font-bold ${isSliderActive === "Pizzas" && "text-redPrivateCode-100"}`}
+              className={`flex items-center justify-center cursor-pointer text-center text-neutralPrivateCode-600 font-bold ${category === 1 && "text-redPrivateCode-100"}`}
               onClick={() => {
-                setSliderActive("Pizzas")
+                if(category === 1) {
+                  setCategory(0)
+                } else {
+                  setCategory(1)
+                }                
               }}  
             >
               Pizzas
@@ -34,9 +39,13 @@ function Content() {
           </Slide>
           <Slide>
           <span 
-              className={`flex items-center justify-center text-center text-neutralPrivateCode-600 font-bold ${isSliderActive === "Combos" && "text-redPrivateCode-100"}`}
+              className={`flex items-center justify-center cursor-pointer only:text-center text-neutralPrivateCode-600 font-bold ${category === 2 && "text-redPrivateCode-100"}`}
               onClick={() => {
-                setSliderActive("Combos")
+                if(category === 2) {
+                  setCategory(0)
+                } else {
+                  setCategory(2)
+                }                
               }}  
             >
               Combos
@@ -44,42 +53,45 @@ function Content() {
           </Slide>
           <Slide>
           <span 
-              className={`flex items-center justify-center text-center text-neutralPrivateCode-600 font-bold ${isSliderActive === "Hamburgers" && "text-redPrivateCode-100"}`}
+              className={`flex items-center justify-center cursor-pointer text-center text-neutralPrivateCode-600 font-bold ${category === 3 && "text-redPrivateCode-100"}`}
               onClick={() => {
-                setSliderActive("Hamburgers")
-              }}  
+                if(category === 3) {
+                  setCategory(0)
+                } else {
+                  setCategory(3)
+                }                
+              }}   
             >
-              Hamburgers
+              Hambúrguer
             </span>
           </Slide>
           <Slide>
           <span 
-              className={`flex items-center justify-center text-center text-neutralPrivateCode-600 font-bold ${isSliderActive === "Sucos" && "text-redPrivateCode-100"}`}
+              className={`flex items-center justify-center cursor-pointer text-center text-neutralPrivateCode-600 font-bold ${category === 4 && "text-redPrivateCode-100"}`}
               onClick={() => {
-                setSliderActive("Sucos")
+                if(category === 4) {
+                  setCategory(0)
+                } else {
+                  setCategory(4)
+                }                
               }}  
             >
-              Sucos
+              Bebidas
             </span>
           </Slide>
+          
           <Slide>
           <span 
-              className={`flex items-center justify-center text-center text-neutralPrivateCode-600 font-bold ${isSliderActive === "Refrigerantes" && "text-redPrivateCode-100"}`}
+              className={`flex items-center justify-center cursor-pointer text-center text-neutralPrivateCode-600 font-bold ${category === 5 && "text-redPrivateCode-100"}`}
               onClick={() => {
-                setSliderActive("Refrigerantes")
+                if(category === 5) {
+                  setCategory(0)
+                } else {
+                  setCategory(5)
+                }                
               }}  
             >
-              Refrigerantes
-            </span>
-          </Slide>
-          <Slide>
-          <span 
-              className={`flex items-center justify-center text-center text-neutralPrivateCode-600 font-bold ${isSliderActive === "Açaís" && "text-redPrivateCode-100"}`}
-              onClick={() => {
-                setSliderActive("Açaís")
-              }}  
-            >
-              Açaís
+              Açaí
             </span>
           </Slide>
         </Slider>
