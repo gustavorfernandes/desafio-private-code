@@ -5,7 +5,7 @@ import { useContext, useEffect } from "react"
 import { GlobalContext } from "../contexts/GlobalContext"
 
 function ProductCard() {
-  const { category, dataAPI, fetchDataAPI, url, openOrder, closeOrder, orderActive, fetchProductData, product, productValue, setProductValue, orderPrice, setOrderPrice, addToCart, globalCounter, incrementCounter, decrementCounter, clearCounter, amount, setAmount }: any = useContext(GlobalContext)
+  const { category, dataAPI, fetchDataAPI, url, openOrder, closeOrder, orderActive, fetchProductData, product, productValue, setProductValue, orderPrice, setOrderPrice, addToCart, globalCounter, incrementCounter, decrementCounter, clearCounter, toggleFinalPrice }: any = useContext(GlobalContext)
 
   useEffect(() => {
     fetchDataAPI(url)
@@ -213,7 +213,7 @@ function ProductCard() {
                         <span className="text-neutralPrivateCode-600 font-bold">
                           Total
                         </span>
-                        <span className="text-greenPrivateCode-100 font-bold">
+                        <span id="total" className="text-greenPrivateCode-100 font-bold">
                           {`R$ ${globalCounter * product.preco},00`}
                         </span>
                       </div>
@@ -223,7 +223,9 @@ function ProductCard() {
                     <button
                       className="w-11/12 flex items-center justify-center mt-4 mb-6"
                       onClick={() => {
-                        addToCart(product)
+                        if (document.getElementById("total")?.innerHTML != "R$ 0,00") {
+                          addToCart(product)
+                        }
                         const totalOrderPrice = globalCounter * product.preco
                         setOrderPrice(totalOrderPrice)
                         closeOrder()

@@ -16,7 +16,7 @@ export const ContextProvider = ({ children }: any) => {
         setDataAPI(response.data)
       })
       .catch((error) => {
-        console.log(error)
+        console.log("Não foi possível se conectar ao banco de dados. Verifique se a API está online.")
       })
   }
 
@@ -91,6 +91,7 @@ function clearCounter() {
   const [cart, setCart] = useState(false)
   const [cartItem, setCartItem] = useState([])
   const [amount, setAmount] = useState(1)
+  const [finalPrice, setFinalPrice] =useState(0)
 
   function addToCart(product: any) {
     const copyCart: any = [...cartItem]
@@ -98,6 +99,7 @@ function clearCounter() {
 
     if (!item) {
       copyCart.push({
+        id: product.id,
         nome: product.nome,
         valor: product.preco,
         quantidade: globalCounter
@@ -117,6 +119,13 @@ function clearCounter() {
   function clearCart() {
     setCartItem([])
     setOrderPrice(0)
+  }
+  function toggleFinalPrice() {
+    let total = cartItem.reduce(getTotal, 0)
+    function getTotal(total: any, item: any) {
+      return total + (item.valor * item.quantidade)
+    }
+    setFinalPrice(total)
   }
 
   //Formulário de entrega 
@@ -199,13 +208,7 @@ function clearCounter() {
   function sendOrderData() {
     const urlOrder = 'http://localhost:8080/pedidos/'
     axios.post(urlOrder, {
-      produtos: [
-        {
-          id: 9,
-          quantidade: 1,
-          valor: 30
-        }
-      ],
+      produtos: cartItem,
       bairro: district,
       cep: cep,
       cidade: city,
@@ -214,7 +217,7 @@ function clearCounter() {
       forma_de_entrega: deliveryMethod,
       numero: number,
       referencia: reference,
-      valor_total: 30
+      valor_total: finalPrice
     })
       .then(() => {
         console.log("Pedido enviado com sucesso!")
@@ -225,7 +228,7 @@ function clearCounter() {
   }
 
   return (
-    <GlobalContext.Provider value={{ dataAPI, setDataAPI, url, setUrl, fetchDataAPI, category, setCategory, filterList, order, setOrder, orderPrice, setOrderPrice, orderActive, setOrderActive, openOrder, closeOrder, product, setProduct, productValue, setProductValue, fetchProductData, globalCounter, setGlobalCounter, cartCounter, setCartCounter, incrementCounter, decrementCounter, clearCounter, cart, setCart, openCart, closeCart, clearCart, cartItem, setCartItem, amount, setAmount, addToCart, delivery, setDelivery, openDeliveryCard, closeDeliveryCard, loading, setLoading, deliveryMethod, setDeliveryMethod, cep, setCep, district, setDistrict, number, setNumber, city, setCity, complement, setComplement, address, setAddress, reference, setReference, dataViaCep, setDataViaCep, searchZipCode, fillFields, clearFields, isSubmitSucess, setSubmitSucess, openSucessCard, closeSucessCard, sendOrderData }}>
+    <GlobalContext.Provider value={{ dataAPI, setDataAPI, url, setUrl, fetchDataAPI, category, setCategory, filterList, order, setOrder, orderPrice, setOrderPrice, orderActive, setOrderActive, openOrder, closeOrder, product, setProduct, productValue, setProductValue, fetchProductData, globalCounter, setGlobalCounter, cartCounter, setCartCounter, incrementCounter, decrementCounter, clearCounter, cart, setCart, openCart, closeCart, clearCart, cartItem, setCartItem, amount, setAmount, addToCart, toggleFinalPrice, finalPrice, setFinalPrice, delivery, setDelivery, openDeliveryCard, closeDeliveryCard, loading, setLoading, deliveryMethod, setDeliveryMethod, cep, setCep, district, setDistrict, number, setNumber, city, setCity, complement, setComplement, address, setAddress, reference, setReference, dataViaCep, setDataViaCep, searchZipCode, fillFields, clearFields, isSubmitSucess, setSubmitSucess, openSucessCard, closeSucessCard, sendOrderData }}>
       {children}
     </GlobalContext.Provider>
   )

@@ -3,21 +3,21 @@
     {
       "id": 1,
       "nome": "Pizza Média",
-      "descricao": "Pizza de 30cm com sabores diversos.",
+      "descricao": "Pizza de 30cm com sabor calabresa com queijo.",
       "preco": 45,
-      "categoria_id": 1      
+      "categoria_id": 1
     },
     {
       "id": 2,
       "nome": "Pizza Família",
-      "descricao": "Pizza de 40cm com sabores diversos.",
+      "descricao": "Pizza tradicional portuguesa de 40cm.",
       "preco": 60,
       "categoria_id": 1
     },
     {
       "id": 3,
       "nome": "Pizza Gigante",
-      "descricao": "Pizza de 50cm com sabores diversos.",
+      "descricao": "Pizza de 50cm de calabresa com presunto e queijos variados.",
       "preco": 75,
       "categoria_id": 1
     },
@@ -26,35 +26,35 @@
       "nome": "Clean Combo",
       "descricao": "X-Salada + Suco de laranja de 500ml.",
       "preco": 37,
-      "categoria_id": 2      
+      "categoria_id": 2
     },
     {
       "id": 5,
       "nome": "Combo Private",
       "descricao": "X-tudo + Coca-cola Lata.",
       "preco": 42,
-      "categoria_id": 2      
+      "categoria_id": 2
     },
     {
       "id": 6,
       "nome": "Combo Família",
       "descricao": "Pizza família + Coca-cola 2L.",
       "preco": 75,
-      "categoria_id": 2      
+      "categoria_id": 2
     },
     {
       "id": 7,
       "nome": "Combo Supreme",
       "descricao": "Pizza gigante + Coca-cola 2L.",
       "preco": 90,
-      "categoria_id": 2      
+      "categoria_id": 2
     },
     {
       "id": 8,
       "nome": "X-Salada",
       "descricao": "Pão de brioche, 90g de carne, queijo, maionese, alface e tomate.",
       "preco": 25,
-      "categoria_id": 3      
+      "categoria_id": 3
     },
     {
       "id": 9,
@@ -75,7 +75,7 @@
       "nome": "Suco de laranja Médio",
       "descricao": "Copo de suco de laranja de 300ml.",
       "preco": 8,
-      "categoria_id": 4      
+      "categoria_id": 4
     },
     {
       "id": 12,

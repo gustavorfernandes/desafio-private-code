@@ -4,7 +4,7 @@ import { useContext } from "react"
 import { GlobalContext } from "../contexts/GlobalContext"
 
 function SubmitSucess() {
-  const { closeSucessCard, closeCart }: any = useContext(GlobalContext)
+  const { closeSucessCard, closeCart, clearCart }: any = useContext(GlobalContext)
 
   return (
     <>
@@ -13,6 +13,7 @@ function SubmitSucess() {
           <button
             className="self-end font-poppins text-lg font-normal mt-5"
             onClick={() => {
+              clearCart()
               closeSucessCard()
               closeCart()
             }}>
@@ -43,6 +44,7 @@ function SubmitSucess() {
           <button
             className="w-full text-white py-3 bg-greenPrivateCode-200 mb-8 rounded-md font-medium"
             onClick={() => {
+              clearCart()
               closeSucessCard()
               closeCart()
             }}>

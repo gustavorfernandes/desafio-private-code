@@ -1,25 +1,31 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable @next/next/no-img-element */
 import { AiOutlineShoppingCart } from "@react-icons/all-files/ai/AiOutlineShoppingCart"
 import { AiOutlineClose } from "@react-icons/all-files/ai/AiOutlineClose"
 import { MdDone } from "@react-icons/all-files/md/MdDone"
 import { AnimatePresence, motion } from "framer-motion"
-import { useContext } from "react"
+import { useContext, useEffect } from "react"
 import { GlobalContext } from "../contexts/GlobalContext"
 import DeliveryCard from "./DeliveryCard"
 import SubmitSucess from "./SubmitSucess"
 
 function Cart() {
-  const { cart, openCart, closeCart, clearCart, delivery, openDeliveryCard, closeDeliveryCard, isSubmitSucess, cartItem, orderPrice, closeSucessCard }: any = useContext(GlobalContext)
+  const { cart, openCart, closeCart, clearCart, delivery, openDeliveryCard, closeDeliveryCard, isSubmitSucess, cartItem,  finalPrice, setFinalPrice, toggleFinalPrice }: any = useContext(GlobalContext)  
 
-  return (
+  toggleFinalPrice()
+
+  return (   
     <>
       <button
         className="flex items-center justify-center"
-        onClick={openCart}
+        onClick={()=> {
+          cartItem.length > 0 &&
+          openCart()
+        }}
       >
         <AiOutlineShoppingCart
-          className={`font-normal w-6 h-6 transition-all text-neutralPrivateCode-600 ${cart && "text-neutralPrivateCode-700"}`}
+          className={`font-normal w-6 h-6 transition-all ${cartItem.length > 0 ? "text-neutralPrivateCode-700" : "text-neutralPrivateCode-400"}`}
         />
       </button>
 
@@ -66,7 +72,7 @@ function Cart() {
                 </span>
               </div>
 
-              <div className="w-full flex flex-col h-[calc(100vh-25rem)] overflow-y-scroll scrollbar">
+              <div className="w-full flex flex-col h-[calc(100vh-26rem)] overflow-y-scroll scrollbar">
 
                 {cartItem &&
 
@@ -99,7 +105,7 @@ function Cart() {
                   Total
                 </span>
                 <span className="text-greenPrivateCode-100 font-bold">
-                  {`Somar tudo do carrinho`}
+                  {`R$ ${finalPrice},00`}
                 </span>
               </div>
 
@@ -123,6 +129,7 @@ function Cart() {
                   onClick={() => {
                     closeCart()
                     clearCart()
+                    setFinalPrice(0)
                   }}
                 >
                   <div className="w-full flex items-center justify-center gap-4 bg-white border border-neutral-300 py-3 rounded">
