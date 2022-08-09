@@ -171,21 +171,34 @@ function ProductCard() {
 
                         {product &&
 
-                          product.adicionais.map((item: any) => (
-                            <div className="w-full flex items-center justify-between px-3 py-2 bg-neutralPrivateCode-100 min-h-[4rem]" key={item.nome}>
-                              <div className="w-5/12 flex flex-col justify-center text-xs text-neutralPrivateCode-700 font-nunito">
-                                <span>
-                                  {item.nome}
+                          product.adicionais.map((item: any, index: any) => {
+                            item.valor === product.preco ? setOrderPrice(0) : setOrderPrice(product.preco)
+
+                            return (
+                              <div
+                                className={`w-full flex items-center justify-between px-3 py-2 min-h-[4rem]
+                              ${index == 0 && "bg-neutralPrivateCode-100"}
+                              ${index == 2 && "bg-neutralPrivateCode-100"}
+                              ${index == 4 && "bg-neutralPrivateCode-100"}
+                              ${index == 6 && "bg-neutralPrivateCode-100"}
+                              ${index == 8 && "bg-neutralPrivateCode-100"}`}
+                                key={item.nome}>
+                                <div className="w-5/12 flex flex-col justify-center text-xs text-neutralPrivateCode-700 font-nunito">
+                                  <span>
+                                    {item.nome}
+                                  </span>
+                                </div>
+                                <span className="w-6/12 text-xs text-neutralPrivateCode-700 font-nunito text-center">
+                                  {item.valor === 0 ?
+                                    "/" :
+                                    `R$ ${item.valor},00`}
                                 </span>
+                                <div className="w-3/12 text-xs text-neutralPrivateCode-700 font-nunito">
+                                  <Counter />
+                                </div>
                               </div>
-                              <span className="w-6/12 text-xs text-neutralPrivateCode-700 font-nunito text-center">
-                                {`R$ ${item.valor},00`}
-                              </span>
-                              <div className="w-3/12 text-xs text-neutralPrivateCode-700 font-nunito">
-                                <Counter />
-                              </div>
-                            </div>
-                          ))}
+                            )
+                          })}
                       </div>
                     </div>
 

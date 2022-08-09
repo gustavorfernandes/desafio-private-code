@@ -16,10 +16,14 @@ function Search() {
       fetchDataAPI(url)
     }
   }
+
+  function onSubmitSearch(event: React.FormEvent) {
+    event.preventDefault()
+  }
   
   return (
     <div className="flex w-10/12">
-      <form className="w-10/12">
+      <form className="w-10/12" onSubmit={onSubmitSearch}>
         <fieldset>
           <label htmlFor="search" />
           <input 

@@ -71,6 +71,9 @@ export const ContextProvider = ({ children }: any) => {
   //Carrinho de compras
 
   const [cart, setCart] = useState(false)
+  
+
+
 
   function openCart() {
     setCart(true)
