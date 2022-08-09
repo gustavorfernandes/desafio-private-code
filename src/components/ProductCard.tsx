@@ -3,11 +3,9 @@
 import { AnimatePresence, motion } from "framer-motion"
 import { useContext, useEffect } from "react"
 import { GlobalContext } from "../contexts/GlobalContext"
-import ItemOrder from "./ItemOrder"
-import Counter from "./Counter"
 
 function ProductCard() {
-  const { category, dataAPI, fetchDataAPI, url, openOrder, closeOrder, orderActive, fetchProductData, product, orderPrice, setOrderPrice }: any = useContext(GlobalContext)
+  const { category, dataAPI, fetchDataAPI, url, openOrder, closeOrder, orderActive, fetchProductData, product, productValue, setProductValue, orderPrice, setOrderPrice, addToCart, globalCounter, incrementCounter, decrementCounter, clearCounter, amount, setAmount }: any = useContext(GlobalContext)
 
   useEffect(() => {
     fetchDataAPI(url)
@@ -23,82 +21,88 @@ function ProductCard() {
       <div className="w-11/12 flex justify-center h-[calc(100vh-10rem)] mb-[2rem] overflow-y-scroll 
     scrollbar">
         <div className="w-full max-h-24 flex items-center flex-wrap gap-[4%]">
-          {dataAPI.map((product: any, index: any) => {
-            if (product.categoria_id === category) {
-              return (
-                <>
-                  <button
-                    className="w-full py-1 flex items-center bg-white shadow-container rounded-lg mb-4 select-none"
-                    onClick={() => {
-                      openProductOrder(product.id)
-                    }}
-                    key={index}
-                  >
-                    <div className="w-10/12 flex flex-col justify-center rounded-bl-lg gap-1" key={index}>
-                      <span className="font-nunito font-bold text-neutralPrivateCode-700 ml-4 text-left" key={index}>
-                        {product.nome}
-                      </span>
-                      <span className="w-10/12 font-nunito text-xs text-neutralPrivateCode-600 ml-4 text-left mb-1" key={index}>
-                        {product.descricao}
-                      </span>
-                      <span className="font-nunito font-bold text-xs text-neutralPrivateCode-600 ml-4 text-left" key={index}>
-                        {`R$ ${product.preco},00`}
-                      </span>
-                    </div>
+          {dataAPI &&
 
-                    <img
-                      className="w-24 h-24 rounded-br-lg rounded-tr-lg"
-                      src={`/images/products/${product.id}.jpg`}
-                      alt={`Produto ${product.id}`}
+            dataAPI.map((product: any, index: any) => {
+              if (product.categoria_id === category) {
+                return (
+                  <>
+                    <button
+                      className="w-full py-1 flex items-center bg-white shadow-container rounded-lg mb-4 select-none"
+                      onClick={() => {
+                        openProductOrder(product.id)
+                      }}
                       key={index}
-                    />
-                  </button>
-                </>
-              )
-            }
+                    >
+                      <div className="w-10/12 flex flex-col justify-center rounded-bl-lg gap-1" key={index}>
+                        <span className="font-nunito font-bold text-neutralPrivateCode-700 ml-4 text-left" key={index}>
+                          {product.nome}
+                        </span>
+                        <span className="w-10/12 font-nunito text-xs text-neutralPrivateCode-600 ml-4 text-left mb-1" key={index}>
+                          {product.descricao}
+                        </span>
+                        <span className="font-nunito font-bold text-xs text-neutralPrivateCode-600 ml-4 text-left" key={index}>
+                          {`R$ ${product.preco},00`}
+                        </span>
+                      </div>
 
-            if (category === 0) {
-              return (
-                <>
-                  <button
-                    className="w-full py-1 flex items-center bg-white shadow-container rounded-lg mb-4 select-none"
-                    onClick={() => {
-                      openProductOrder(product.id)
-                    }}
-                    key={index}
-                  >
-                    <div className="w-10/12 flex flex-col justify-center rounded-bl-lg gap-1" key={index}>
-                      <span className="font-nunito font-bold text-neutralPrivateCode-700 ml-4 text-left" key={index}>
-                        {product.nome}
-                      </span>
-                      <span className="w-10/12 font-nunito text-xs text-neutralPrivateCode-600 ml-4 text-left mb-1" key={index}>
-                        {product.descricao}
-                      </span>
-                      <span className="font-nunito font-bold text-xs text-neutralPrivateCode-600 ml-4 text-left" key={index}>
-                        {`R$ ${product.preco},00`}
-                      </span>
-                    </div>
+                      <img
+                        className="w-24 h-24 rounded-br-lg rounded-tr-lg"
+                        src={`/images/products/${product.id}.jpg`}
+                        alt={`Produto ${product.id}`}
+                        key={index}
+                      />
+                    </button>
+                  </>
+                )
+              }
 
-                    <img
-                      className="w-24 h-24 rounded-br-lg rounded-tr-lg"
-                      src={`/images/products/${product.id}.jpg`}
-                      alt={`Produto ${product.id}`}
+              if (category === 0) {
+                return (
+                  <>
+                    <button
+                      className="w-full py-1 flex items-center bg-white shadow-container rounded-lg mb-4 select-none"
+                      onClick={() => {
+                        openProductOrder(product.id)
+                      }}
                       key={index}
-                    />
-                  </button>
-                </>
-              )
-            }
-          })}
+                    >
+                      <div className="w-10/12 flex flex-col justify-center rounded-bl-lg gap-1" key={index}>
+                        <span className="font-nunito font-bold text-neutralPrivateCode-700 ml-4 text-left" key={index}>
+                          {product.nome}
+                        </span>
+                        <span className="w-10/12 font-nunito text-xs text-neutralPrivateCode-600 ml-4 text-left mb-1" key={index}>
+                          {product.descricao}
+                        </span>
+                        <span className="font-nunito font-bold text-xs text-neutralPrivateCode-600 ml-4 text-left" key={index}>
+                          {`R$ ${product.preco},00`}
+                        </span>
+                      </div>
+
+                      <img
+                        className="w-24 h-24 rounded-br-lg rounded-tr-lg"
+                        src={`/images/products/${product.id}.jpg`}
+                        alt={`Produto ${product.id}`}
+                        key={index}
+                      />
+                    </button>
+                  </>
+                )
+              }
+            })}
         </div>
       </div >
 
       <AnimatePresence>
         {orderActive &&
           <>
-            <div id="overlay" className="fixed z-10 inset-0 bg-black opacity-30" onClick={closeOrder} />
+            <div id="overlay" className="fixed z-10 inset-0 bg-black opacity-30" onClick={() => {
+              closeOrder()
+              clearCounter()
+            }}
+            />
 
-            <div className="w-11/12 fixed z-20 top-3">
+            <div className="w-11/12 fixed z-20 top-24">
               <motion.div
                 className="w-full h-full bg-white flex flex-col items-center justify-center rounded-md select-none shadow-container"
                 initial={{ opacity: 0, scale: 0.5 }}
@@ -108,7 +112,10 @@ function ProductCard() {
               >
                 <button
                   className="self-end font-poppins text-lg font-normal mr-4 mt-3"
-                  onClick={closeOrder}
+                  onClick={() => {
+                    closeOrder()
+                    clearCounter()
+                  }}
                 >
                   <img
                     className="w-5 self-end"
@@ -161,44 +168,43 @@ function ProductCard() {
                       <span className="w-4/12 text-xs text-neutralPrivateCode-700 font-nunito text-center">
                         Valor
                       </span>
-                      <span className="w-3/12 text-xs text-neutralPrivateCode-700 font-nunito text-right">
+                      <span className="w-4/12 text-xs text-neutralPrivateCode-700 font-nunito text-right pr-1">
                         Quantidade
                       </span>
                     </div>
 
-                    <div className="w-11/12 flex flex-col overflow-y-scroll scrollbar h-[15vh]  mb-3">
+                    <div className="w-11/12 flex flex-col overflow-y-scroll scrollbar mb-3">
                       <div className="w-full flex flex-col items-center">
 
-                        {product &&
+                        <div className="w-full flex items-center justify-between px-3 py-2 min-h-[4rem] bg-neutralPrivateCode-100">
 
-                          product.adicionais.map((item: any, index: any) => {
-                            item.valor === product.preco ? setOrderPrice(0) : setOrderPrice(product.preco)
+                          <div className="w-4/12 flex flex-col justify-center text-xs text-neutralPrivateCode-700 font-nunito">
+                            <span>
+                              {product.nome}
+                            </span>
+                          </div>
+                          <span className="w-4/12 text-xs text-neutralPrivateCode-700 font-nunito text-center">
+                            {`R$ ${product.preco},00`}
+                          </span>
+                          <div className="w-4/12 text-xs text-neutralPrivateCode-700 font-nunito pl-8">
+                            <div className="w-full flex items-center justify-center gap-2">
+                              <button
+                                className="flex items-center justify-center bg-neutralPrivateCode-400 rounded-full font-bold w-5 h-5 text-base text-neutralPrivateCode-600"
+                                onClick={decrementCounter}>
+                                -
+                              </button>
+                              <span className="text-neutralPrivateCode-600">
+                                {globalCounter}
+                              </span>
+                              <button
+                                className="flex items-center justify-center bg-redPrivateCode-100 rounded-full font-bold w-5 h-5 text-xs text-white"
+                                onClick={incrementCounter}>
+                                +
+                              </button>
+                            </div>
+                          </div>
+                        </div>
 
-                            return (
-                              <div
-                                className={`w-full flex items-center justify-between px-3 py-2 min-h-[4rem]
-                              ${index == 0 && "bg-neutralPrivateCode-100"}
-                              ${index == 2 && "bg-neutralPrivateCode-100"}
-                              ${index == 4 && "bg-neutralPrivateCode-100"}
-                              ${index == 6 && "bg-neutralPrivateCode-100"}
-                              ${index == 8 && "bg-neutralPrivateCode-100"}`}
-                                key={item.nome}>
-                                <div className="w-5/12 flex flex-col justify-center text-xs text-neutralPrivateCode-700 font-nunito">
-                                  <span>
-                                    {item.nome}
-                                  </span>
-                                </div>
-                                <span className="w-6/12 text-xs text-neutralPrivateCode-700 font-nunito text-center">
-                                  {item.valor === 0 ?
-                                    "/" :
-                                    `R$ ${item.valor},00`}
-                                </span>
-                                <div className="w-3/12 text-xs text-neutralPrivateCode-700 font-nunito">
-                                  <Counter />
-                                </div>
-                              </div>
-                            )
-                          })}
                       </div>
                     </div>
 
@@ -208,7 +214,7 @@ function ProductCard() {
                           Total
                         </span>
                         <span className="text-greenPrivateCode-100 font-bold">
-                          {`R$ ${orderPrice},00`}
+                          {`R$ ${globalCounter * product.preco},00`}
                         </span>
                       </div>
 
@@ -216,7 +222,13 @@ function ProductCard() {
 
                     <button
                       className="w-11/12 flex items-center justify-center mt-4 mb-6"
-                      onClick={closeOrder}
+                      onClick={() => {
+                        addToCart(product)
+                        const totalOrderPrice = globalCounter * product.preco
+                        setOrderPrice(totalOrderPrice)
+                        closeOrder()
+                        clearCounter()
+                      }}
                     >
                       <div className="w-full flex items-center justify-center gap-4 bg-redPrivateCode-100 h-[5vh] rounded hover:bg-redPrivateCode-200 transition-all">
                         <span className="text-white font-sm">

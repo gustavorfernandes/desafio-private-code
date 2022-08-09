@@ -5,368 +5,112 @@
       "nome": "Pizza Média",
       "descricao": "Pizza de 30cm com sabores diversos.",
       "preco": 45,
-      "categoria_id": 1,
-      "adicionais": [
-        {
-          "nome": "Calabresa",
-          "valor": 45
-        },
-        {
-          "nome": "Mussarela",
-          "valor": 45
-        },
-        {
-          "nome": "Frango com Catupiry",
-          "valor": 45
-        },
-        {
-          "nome": "Portuguesa",
-          "valor": 45
-        },
-        {
-          "nome": "Bacon com ovos",
-          "valor": 45
-        }
-      ]
+      "categoria_id": 1      
     },
     {
       "id": 2,
       "nome": "Pizza Família",
       "descricao": "Pizza de 40cm com sabores diversos.",
       "preco": 60,
-      "categoria_id": 1,
-      "adicionais": [
-        {
-          "nome": "Calabresa",
-          "valor": 60
-        },
-        {
-          "nome": "Mussarela",
-          "valor": 60
-        },
-        {
-          "nome": "Frango com Catupiry",
-          "valor": 60
-        },
-        {
-          "nome": "Portuguesa",
-          "valor": 60
-        },
-        {
-          "nome": "Bacon com ovos",
-          "valor": 60
-        }
-      ]
+      "categoria_id": 1
     },
     {
       "id": 3,
       "nome": "Pizza Gigante",
       "descricao": "Pizza de 50cm com sabores diversos.",
       "preco": 75,
-      "categoria_id": 1,
-      "adicionais": [
-        {
-          "nome": "Calabresa",
-          "valor": 75
-        },
-        {
-          "nome": "Mussarela",
-          "valor": 75
-        },
-        {
-          "nome": "Frango com Catupiry",
-          "valor": 75
-        },
-        {
-          "nome": "Portuguesa",
-          "valor": 75
-        },
-        {
-          "nome": "Bacon com ovos",
-          "valor": 75
-        }
-      ]
+      "categoria_id": 1
     },
     {
       "id": 4,
       "nome": "Clean Combo",
       "descricao": "X-Salada + Suco de laranja de 500ml.",
       "preco": 37,
-      "categoria_id": 2,
-      "adicionais": [
-        {
-          "nome": "Sem salada",
-          "valor": 0
-        },
-        {
-          "nome": "Sem molho",
-          "valor": 0
-        },
-        {
-          "nome": "Bebida light",
-          "valor": 0
-        }
-      ]
+      "categoria_id": 2      
     },
     {
       "id": 5,
       "nome": "Combo Private",
       "descricao": "X-tudo + Coca-cola Lata.",
       "preco": 42,
-      "categoria_id": 2,
-      "adicionais": [
-        {
-          "nome": "Sem salada",
-          "valor": 0
-        },
-        {
-          "nome": "Sem molho",
-          "valor": 0
-        },
-        {
-          "nome": "Bebida light",
-          "valor": 0
-        }
-      ]
+      "categoria_id": 2      
     },
     {
       "id": 6,
       "nome": "Combo Família",
       "descricao": "Pizza família + Coca-cola 2L.",
       "preco": 75,
-      "categoria_id": 2,
-      "adicionais": [
-        {
-          "nome": "Sem salada",
-          "valor": 0
-        },
-        {
-          "nome": "Sem molho",
-          "valor": 0
-        },
-        {
-          "nome": "Bebida light",
-          "valor": 0
-        }
-      ]
+      "categoria_id": 2      
     },
     {
       "id": 7,
       "nome": "Combo Supreme",
       "descricao": "Pizza gigante + Coca-cola 2L.",
       "preco": 90,
-      "categoria_id": 2,
-      "adicionais": [
-        {
-          "nome": "Sem salada",
-          "valor": 0
-        },
-        {
-          "nome": "Sem molho",
-          "valor": 0
-        },
-        {
-          "nome": "Bebida light",
-          "valor": 0
-        }
-      ]
+      "categoria_id": 2      
     },
     {
       "id": 8,
       "nome": "X-Salada",
       "descricao": "Pão de brioche, 90g de carne, queijo, maionese, alface e tomate.",
       "preco": 25,
-      "categoria_id": 3,
-      "adicionais": [
-        {
-          "nome": "queijo adicional",
-          "valor": 2
-        },
-        {
-          "nome": "bacon adicional",
-          "valor": 2
-        },
-        {
-          "nome": "molho adicional",
-          "valor": 2
-        }
-      ]
+      "categoria_id": 3      
     },
     {
       "id": 9,
       "nome": "X-Bacon",
       "descricao": "Pão australiano, 150g de carne, queijo e bacon.",
       "preco": 30,
-      "categoria_id": 3,
-      "adicionais": [
-        {
-          "nome": "queijo adicional",
-          "valor": 2
-        },
-        {
-          "nome": "bacon adicional",
-          "valor": 2
-        },
-        {
-          "nome": "molho adicional",
-          "valor": 2
-        }
-      ]
+      "categoria_id": 3
     },
     {
       "id": 10,
       "nome": "X-Tudo",
       "descricao": "Pão de brioche, 2 carnes de 90g, queijo, bacon, salada e molho especial.",
       "preco": 32,
-      "categoria_id": 3,
-      "adicionais": [
-        {
-          "nome": "queijo adicional",
-          "valor": 2
-        },
-        {
-          "nome": "bacon adicional",
-          "valor": 2
-        },
-        {
-          "nome": "molho adicional",
-          "valor": 2
-        }
-      ]
+      "categoria_id": 3
     },
     {
       "id": 11,
       "nome": "Suco de laranja Médio",
       "descricao": "Copo de suco de laranja de 300ml.",
       "preco": 8,
-      "categoria_id": 4,
-      "adicionais": [
-        {
-          "nome": "normal",
-          "valor": 0
-        },
-        {
-          "nome": "light",
-          "valor": 0
-        }
-      ]
+      "categoria_id": 4      
     },
     {
       "id": 12,
       "nome": "Suco de laranja Grande",
       "descricao": "Copo de suco de laranja de 500ml.",
       "preco": 12,
-      "categoria_id": 4,
-      "adicionais": [
-        {
-          "nome": "normal",
-          "valor": 0
-        },
-        {
-          "nome": "light",
-          "valor": 0
-        }
-      ]
+      "categoria_id": 4
     },
     {
       "id": 13,
       "nome": "Coca-cola Lata",
       "descricao": "Lata de coca-cola de 350ml.",
       "preco": 10,
-      "categoria_id": 4,
-      "adicionais": [
-        {
-          "nome": "normal",
-          "valor": 0
-        },
-        {
-          "nome": "light",
-          "valor": 0
-        }
-      ]
+      "categoria_id": 4
     },
     {
       "id": 14,
       "nome": "Coca-cola 2L",
       "descricao": "Coca-cola de 2 litros.",
       "preco": 15,
-      "categoria_id": 4,
-      "adicionais": [
-        {
-          "nome": "normal",
-          "valor": 0
-        },
-        {
-          "nome": "light",
-          "valor": 0
-        }
-      ]
+      "categoria_id": 4
     },
     {
       "id": 15,
       "nome": "Açaí Médio",
       "descricao": "Copo de açaí de 300ml.",
       "preco": 15,
-      "categoria_id": 5,
-      "adicionais": [
-        {
-          "nome": "granola",
-          "valor": 0
-        },
-        {
-          "nome": "leite condensado",
-          "valor": 0
-        },
-        {
-          "nome": "flocos de arroz",
-          "valor": 0
-        },
-        {
-          "nome": "paçoca",
-          "valor": 0
-        },
-        {
-          "nome": "calda de morango",
-          "valor": 0
-        },
-        {
-          "nome": "calda de chocolate",
-          "valor": 0
-        }
-      ]
+      "categoria_id": 5
     },
     {
       "id": 16,
       "nome": "Açaí Grande",
       "descricao": "Copo de açaí de 500ml.",
       "preco": 23,
-      "categoria_id": 5,
-      "adicionais": [
-        {
-          "nome": "granola",
-          "valor": 0
-        },
-        {
-          "nome": "leite condensado",
-          "valor": 0
-        },
-        {
-          "nome": "flocos de arroz",
-          "valor": 0
-        },
-        {
-          "nome": "paçoca",
-          "valor": 0
-        },
-        {
-          "nome": "calda de morango",
-          "valor": 0
-        },
-        {
-          "nome": "calda de chocolate",
-          "valor": 0
-        }
-      ]
+      "categoria_id": 5
     }
   ],
   "pedidos": [    

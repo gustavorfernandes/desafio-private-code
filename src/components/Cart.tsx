@@ -6,12 +6,11 @@ import { MdDone } from "@react-icons/all-files/md/MdDone"
 import { AnimatePresence, motion } from "framer-motion"
 import { useContext } from "react"
 import { GlobalContext } from "../contexts/GlobalContext"
-import ItemCart from "./ItemCart"
 import DeliveryCard from "./DeliveryCard"
 import SubmitSucess from "./SubmitSucess"
 
 function Cart() {
-  const { cart, openCart, closeCart, delivery, openDeliveryCard, closeDeliveryCard, isSubmitSucess, closeSucessCard }: any = useContext(GlobalContext)
+  const { cart, openCart, closeCart, clearCart, delivery, openDeliveryCard, closeDeliveryCard, isSubmitSucess, cartItem, orderPrice, closeSucessCard }: any = useContext(GlobalContext)
 
   return (
     <>
@@ -69,33 +68,30 @@ function Cart() {
 
               <div className="w-full flex flex-col h-[calc(100vh-25rem)] overflow-y-scroll scrollbar">
 
-                <div className="w-full flex items-center justify-between px-6 py-4 bg-neutralPrivateCode-100 min-h-[4rem]">
-                  <ItemCart />
-                </div>
+                {cartItem &&
 
-                <div className="w-full flex items-center justify-between px-6 py-4 bg-white min-h-[4rem]">
-                  <ItemCart />
-                </div>
+                  cartItem.map((item: any, index: any) => {
+                    return (
+                      <div
+                        className={`w-full flex items-center justify-between px-6 py-4 min-h-[4rem]
+                        ${index % 2 == 0 ? "bg-neutralPrivateCode-100" : "bg-white"}`}
+                        key={item.nome}>
+                        <div className="w-6/12 flex flex-col justify-center text-xs text-neutralPrivateCode-700 font-nunito">
+                          <span>
+                            {item.nome}
+                          </span>
+                        </div>
+                        <div className="w-4/12 text-xs text-neutralPrivateCode-700 font-nunito text-center">
+                          {item.quantidade}
+                        </div>
+                        <span className="w-3/12 text-xs text-neutralPrivateCode-700 font-nunito text-right">
+                          {`R$ ${item.quantidade * item.valor},00`}
+                        </span>
+                      </div>
+                    )
+                  })
+                }
 
-                <div className="w-full flex items-center justify-between px-6 py-4 bg-neutralPrivateCode-100 min-h-[4rem]">
-
-                </div>
-
-                <div className="w-full flex items-center justify-between px-6 py-4 bg-white min-h-[4rem]">
-
-                </div>
-
-                <div className="w-full flex items-center justify-between px-6 py-4 bg-neutralPrivateCode-100 min-h-[4rem]">
-
-                </div>
-
-                <div className="w-full flex items-center justify-between px-6 py-4 bg-white min-h-[4rem]">
-
-                </div>
-
-                <div className="w-full flex items-center justify-between px-6 py-4 bg-neutralPrivateCode-100 min-h-[4rem]">
-
-                </div>
               </div>
 
               <div className="w-full flex items-center justify-between px-6 py-4 border">
@@ -103,7 +99,7 @@ function Cart() {
                   Total
                 </span>
                 <span className="text-greenPrivateCode-100 font-bold">
-                  R$ 40,00
+                  {`Somar tudo do carrinho`}
                 </span>
               </div>
 
@@ -124,7 +120,10 @@ function Cart() {
 
                 <button
                   className="flex items-center justify-center w-6/12"
-                  onClick={closeCart}
+                  onClick={() => {
+                    closeCart()
+                    clearCart()
+                  }}
                 >
                   <div className="w-full flex items-center justify-center gap-4 bg-white border border-neutral-300 py-3 rounded">
                     <AiOutlineClose
