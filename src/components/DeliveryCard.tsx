@@ -27,7 +27,7 @@ function DeliveryCard() {
   return (
     <>
       <div className="w-full flex flex-col items-center">
-        <div className="w-11/12 flex items-center justify-end border-b border-b-neutral-100 pb-10 mb-2">
+        <div className="w-11/12 max-w-[450px] flex items-center justify-end border-b border-b-neutral-100 pb-10 mb-2">
           <button
             className="self-end font-poppins text-lg font-normal mt-5"
             onClick={() => {
@@ -44,7 +44,7 @@ function DeliveryCard() {
         </div>
       </div>
 
-      <div className="w-full flex flex-col items-center justify-center mt-4">
+      <div className="w-full max-w-[450px] flex flex-col items-center justify-center mt-4">
         <div className="w-11/12 flex flex-col justify-center rounded">
           <form onSubmit={submitForm}>
             <fieldset>

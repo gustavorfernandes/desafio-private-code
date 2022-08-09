@@ -113,7 +113,67 @@
       "categoria_id": 5
     }
   ],
-  "pedidos": [    
+  "pedidos": [
+    {
+      "produtos": [
+        {
+          "id": 1,
+          "nome": "Pizza Média",
+          "valor": 45,
+          "quantidade": 1
+        }
+      ],
+      "bairro": "Pavuna",
+      "cep": "21520-180",
+      "cidade": "Rio de Janeiro",
+      "complemento": "",
+      "endereco": "Rua Albertina Guerra",
+      "forma_de_entrega": "delivery",
+      "numero": "29",
+      "referencia": "",
+      "valor_total": 45,
+      "id": 1
+    },
+    {
+      "produtos": [
+        {
+          "id": 5,
+          "nome": "Combo Private",
+          "valor": 42,
+          "quantidade": 1
+        }
+      ],
+      "bairro": "Pavuna",
+      "cep": "21520-180",
+      "cidade": "Rio de Janeiro",
+      "complemento": "",
+      "endereco": "Rua Albertina Guerra",
+      "forma_de_entrega": "delivery",
+      "numero": "29",
+      "referencia": "",
+      "valor_total": 42,
+      "id": 2
+    },
+    {
+      "produtos": [
+        {
+          "id": 12,
+          "nome": "Suco de laranja Grande",
+          "valor": 12,
+          "quantidade": 2
+        }
+      ],
+      "bairro": "Pavuna",
+      "cep": "21520-180",
+      "cidade": "Rio de Janeiro",
+      "complemento": "",
+      "endereco": "Rua Albertina Guerra",
+      "forma_de_entrega": "delivery",
+      "numero": "29",
+      "referencia": "",
+      "valor_total": 24,
+      "id": 3
+    }
   ],
   "categorias": [
     {

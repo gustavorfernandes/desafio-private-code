@@ -22,7 +22,7 @@ function Search() {
   }
   
   return (
-    <div className="flex w-10/12">
+    <div className="flex w-10/12 max-w-[460px]">
       <form className="w-10/12" onSubmit={onSubmitSearch}>
         <fieldset>
           <label htmlFor="search" />
@@ -38,7 +38,7 @@ function Search() {
         </fieldset>
       </form>
 
-      <div className="w-2/12 flex items-center justify-center bg-redPrivateCode-100 rounded-tr-md rounded-br-md -ml-1">
+      <div className="w-2/12 max-w-[64px] flex items-center justify-center bg-redPrivateCode-100 rounded-tr-md rounded-br-md -ml-1">
         <div>
           <img
             className="w-6 p-1"

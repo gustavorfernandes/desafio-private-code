@@ -11,28 +11,130 @@ import DeliveryCard from "./DeliveryCard"
 import SubmitSucess from "./SubmitSucess"
 
 function Cart() {
-  const { cart, openCart, closeCart, clearCart, delivery, openDeliveryCard, closeDeliveryCard, isSubmitSucess, cartItem,  finalPrice, setFinalPrice, toggleFinalPrice }: any = useContext(GlobalContext)  
+  const { cart, openCart, closeCart, clearCart, delivery, openDeliveryCard, closeDeliveryCard, isSubmitSucess, cartItem, finalPrice, setFinalPrice, toggleFinalPrice }: any = useContext(GlobalContext)
 
   toggleFinalPrice()
 
-  return (   
+  return (
     <>
       <button
-        className="flex items-center justify-center"
-        onClick={()=> {
+        className="flex items-center justify-center mr-6 lg:hidden"
+        onClick={() => {
           cartItem.length > 0 &&
-          openCart()
+            openCart()
         }}
       >
         <AiOutlineShoppingCart
-          className={`font-normal w-6 h-6 transition-all ${cartItem.length > 0 ? "text-neutralPrivateCode-700" : "text-neutralPrivateCode-400"}`}
+          className={`font-normal w-6 h-6 sm:h-9 sm:w-9 transition-all ${cartItem.length > 0 ? "text-neutralPrivateCode-700" : "text-neutralPrivateCode-400"}`}
         />
       </button>
+
+      <div className="hidden bg-white lg:flex flex-col items-center fixed w-3/12 z-20 right-0 inset-y-0">
+        <div className="w-full flex flex-col justify-center ">
+          <div className="w-full flex flex-col justify-center border-b border-b-neutralPrivateCode-200">
+            <div className="pt-16 mb-8"/>
+          </div>
+
+          <div className="w-full flex flex-col justify-center border-b border-b-neutralPrivateCode-200 pb-[0.15rem]">
+            <img
+              className="p-8"
+              src="/images/logo.png"
+              alt="Private Code"
+            />
+          </div>
+
+          <div className="w-full flex items-center justify-between px-6 pt-4 mb-4">
+            <span className="w-6/12 text-xs text-neutralPrivateCode-700 font-nunito">
+              Produto
+            </span>
+            <span className="w-4/12 text-xs text-neutralPrivateCode-700 font-nunito text-center">
+              Quantidade
+            </span>
+            <span className="w-3/12 text-xs text-neutralPrivateCode-700 font-nunito text-right">
+              Total
+            </span>
+          </div>
+
+          <div className="w-full flex flex-col h-[calc(100vh-27rem)] max-h-[550px] overflow-y-scroll scrollbar mb-2">
+
+            {cartItem &&
+
+              cartItem.map((item: any, index: any) => {
+                return (
+                  <div
+                    className={`w-full flex items-center justify-between px-6 py-4 min-h-[4rem]
+                        ${index % 2 == 0 ? "bg-neutralPrivateCode-100" : "bg-white"}`}
+                    key={item.nome}>
+                    <div className="w-6/12 flex flex-col justify-center text-xs text-neutralPrivateCode-700 font-nunito">
+                      <span>
+                        {item.nome}
+                      </span>
+                    </div>
+                    <div className="w-4/12 text-xs text-neutralPrivateCode-700 font-nunito text-center">
+                      {item.quantidade}
+                    </div>
+                    <span className="w-3/12 text-xs text-neutralPrivateCode-700 font-nunito text-right">
+                      {`R$ ${item.quantidade * item.valor},00`}
+                    </span>
+                  </div>
+                )
+              })
+            }
+
+          </div>
+
+          <div className="w-full flex items-center justify-between px-6 py-4 border">
+            <span className="text-neutralPrivateCode-600 font-bold">
+              Total
+            </span>
+            <span className="text-greenPrivateCode-100 font-bold">
+              {`R$ ${finalPrice},00`}
+            </span>
+          </div>
+
+          <div className="w-full flex items-center justify-between p-6 gap-4 mb-4">
+            <button className="flex items-center justify-center w-6/12" type="button">
+              <div
+                className="w-full flex items-center justify-center gap-4 bg-redPrivateCode-100 py-3 rounded hover:bg-redPrivateCode-200 transition-all"
+                onClick={()=> {
+                  cartItem.length > 0 &&
+                  openDeliveryCard()
+                }}
+              >
+                <MdDone
+                  color="white"
+                />
+                <span className="text-white font-normal">
+                  Finalizar
+                </span>
+              </div>
+            </button>
+
+            <button
+              className="flex items-center justify-center w-6/12"
+              onClick={() => {
+                closeCart()
+                clearCart()
+                setFinalPrice(0)
+              }}
+            >
+              <div className="w-full flex items-center justify-center gap-4 bg-white border border-neutral-300 py-3 rounded">
+                <AiOutlineClose
+                  color="#696969"
+                />
+                <span className="text-neutralPrivateCode-600 font-normal">
+                  Cancelar
+                </span>
+              </div>
+            </button>
+          </div>
+        </div>
+      </div>
 
       <AnimatePresence>
         {cart &&
           <motion.div
-            className="bg-white flex flex-col items-center  fixed rounded-sm w-full z-20 right-0 inset-y-0"
+            className="bg-white flex flex-col items-center fixed rounded-sm w-full sm:w-7/12 sm:max-w-[380px] z-20 right-0 inset-y-0"
             initial={{ x: 500 }}
             animate={{ x: - 0 }}
             exit={{ opacity: 0, scale: 0.5, x: 0 }}
@@ -72,7 +174,7 @@ function Cart() {
                 </span>
               </div>
 
-              <div className="w-full flex flex-col h-[calc(100vh-26rem)] overflow-y-scroll scrollbar">
+              <div className="w-full flex flex-col h-[calc(100vh-26rem)] max-h-[550px] overflow-y-scroll scrollbar">
 
                 {cartItem &&
 
@@ -153,9 +255,9 @@ function Cart() {
           <>
             <div id="overlay" className="fixed z-20 inset-0 bg-black opacity-30" onClick={closeDeliveryCard} />
 
-            <div className="w-11/12 fixed z-20 top-4">
+            <div className="w-11/12 fixed z-20 top-4 m-auto">
               <motion.div
-                className="w-full h-full bg-white flex flex-col items-center justify-center rounded select-none shadow-container"
+                className="w-full max-w-[450px] h-full bg-white flex flex-col items-center justify-center rounded select-none shadow-container"
                 initial={{ opacity: 0, scale: 0.5 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.5 }}
@@ -171,7 +273,7 @@ function Cart() {
           <>
             <div id="overlay" className="fixed z-20 inset-0 bg-black opacity-30" />
 
-            <div className="w-11/12 fixed z-20 top-[25vh]">
+            <div className="w-11/12 fixed z-20 max-w-[340px] top-[25vh]">
               <motion.div
                 className="w-full h-full bg-white flex flex-col items-center justify-center rounded select-none shadow-container"
                 initial={{ opacity: 0, scale: 0.5 }}
@@ -185,7 +287,6 @@ function Cart() {
           </>
         }
       </AnimatePresence>
-
     </>
   )
 }

@@ -8,7 +8,7 @@ function SubmitSucess() {
 
   return (
     <>
-      <div className="w-full flex flex-col justify-center items-center">
+      <div className="w-full max-w-[340px] flex flex-col justify-center items-center">
         <div className="w-10/12 flex items-center justify-end">
           <button
             className="self-end font-poppins text-lg font-normal mt-5"

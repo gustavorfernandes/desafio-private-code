@@ -18,7 +18,7 @@ function ProductCard() {
 
   return (
     <>
-      <div className="w-11/12 flex justify-center h-[calc(100vh-10rem)] mb-[2rem] overflow-y-scroll 
+      <div className="w-11/12 flex md:hidden justify-center h-[calc(100vh-10rem)] mb-[2rem] overflow-y-scroll 
     scrollbar">
         <div className="w-full max-h-24 flex items-center flex-wrap gap-[4%]">
           {dataAPI &&
@@ -93,6 +93,74 @@ function ProductCard() {
         </div>
       </div >
 
+      <div className="w-full hidden md:flex justify-center h-[calc(100vh-10rem)] mb-[2rem] overflow-y-scroll scrollbar">
+        <div className="w-11/12 flex items-center justify-between flex-wrap gap-4 pt-1">
+          {dataAPI &&
+
+            dataAPI.map((product: any, index: any) => {
+              if (product.categoria_id === category) {
+                return (
+                  <>
+                    <button
+                      className="w-48 h-48 flex items-center bg-white shadow-container rounded mb-4 select-none"
+                      onClick={() => {
+                        openProductOrder(product.id)
+                      }}
+                      key={index}
+                    >
+                      <div className="w-full flex flex-col justify-center rounded" key={index}>
+                        <img
+                          className="w-full h-32 rounded-tl rounded-tr mb-3"
+                          src={`/images/products/${product.id}.jpg`}
+                          alt={`Produto ${product.id}`}
+                          key={index}
+                        />
+
+                        <span className="font-nunito font-bold text-neutralPrivateCode-700 text-center" key={index}>
+                          {product.nome}
+                        </span>
+                        <span className="font-nunito font-bold text-xs text-neutralPrivateCode-600 text-center mb-4" key={index}>
+                          {`R$ ${product.preco},00`}
+                        </span>
+                      </div>
+                    </button>
+                  </>
+                )
+              }
+
+              if (category === 0) {
+                return (
+                  <>
+                    <button
+                      className="w-48 h-48 flex items-center bg-white shadow-container rounded mb-4 select-none"
+                      onClick={() => {
+                        openProductOrder(product.id)
+                      }}
+                      key={index}
+                    >
+                      <div className="w-full flex flex-col justify-center rounded-bl" key={index}>
+                        <img
+                          className="w-full h-32 rounded-tl rounded-tr mb-3"
+                          src={`/images/products/${product.id}.jpg`}
+                          alt={`Produto ${product.id}`}
+                          key={index}
+                        />
+
+                        <span className="font-nunito font-bold text-neutralPrivateCode-700 text-center" key={index}>
+                          {product.nome}
+                        </span>
+                        <span className="font-nunito font-bold text-xs text-neutralPrivateCode-600 text-center mb-4" key={index}>
+                          {`R$ ${product.preco},00`}
+                        </span>
+                      </div>
+                    </button>
+                  </>
+                )
+              }
+            })}
+        </div>
+      </div >
+
       <AnimatePresence>
         {orderActive &&
           <>
@@ -102,7 +170,7 @@ function ProductCard() {
             }}
             />
 
-            <div className="w-11/12 fixed z-20 top-24">
+            <div className="w-11/12 max-w-[360px] fixed z-20 top-14">
               <motion.div
                 className="w-full h-full bg-white flex flex-col items-center justify-center rounded-md select-none shadow-container"
                 initial={{ opacity: 0, scale: 0.5 }}

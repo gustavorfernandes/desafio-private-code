@@ -219,11 +219,8 @@ function clearCounter() {
       referencia: reference,
       valor_total: finalPrice
     })
-      .then(() => {
-        console.log("Pedido enviado com sucesso!")
-      })
       .catch((error) => {
-        console.log(error)
+        console.log("Não foi possível concluir o pedido.")
       })
   }
 
