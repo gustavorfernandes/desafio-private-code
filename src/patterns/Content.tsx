@@ -14,7 +14,7 @@ const settingsMobile: SliderProps = {
 
 const settings: SliderProps = { 
   spaceBetween: 0,
-  slidesPerView: 3,
+  slidesPerView: 4,
   navigation: true
 }
 
@@ -102,13 +102,13 @@ function Content() {
         </Slider>
       </div>
 
-      <div className="hidden w-11/12 md:flex items-center justify-center bg-white rounded-md shadow-container select-none ">
+      <div className="hidden w-11/12 h-28 md:flex items-center justify-center bg-white rounded-md shadow-container select-none ">
         <Slider
           settings={settings}
         >
           <Slide>
             <span 
-              className={`flex items-center justify-center cursor-pointer text-center text-neutralPrivateCode-600 font-bold ${category === 1 && "text-redPrivateCode-100"}`}
+              className={`flex items-center xl:text-xl justify-center cursor-pointer text-center text-neutralPrivateCode-600 font-bold ${category === 1 && "text-redPrivateCode-100"}`}
               onClick={() => {
                 if(category === 1) {
                   setCategory(0)
@@ -122,7 +122,7 @@ function Content() {
           </Slide>
           <Slide>
           <span 
-              className={`flex items-center justify-center cursor-pointer only:text-center text-neutralPrivateCode-600 font-bold ${category === 2 && "text-redPrivateCode-100"}`}
+              className={`flex items-center justify-center xl:text-xl cursor-pointer only:text-center text-neutralPrivateCode-600 font-bold ${category === 2 && "text-redPrivateCode-100"}`}
               onClick={() => {
                 if(category === 2) {
                   setCategory(0)
@@ -136,7 +136,7 @@ function Content() {
           </Slide>
           <Slide>
           <span 
-              className={`flex items-center justify-center cursor-pointer text-center text-neutralPrivateCode-600 font-bold ${category === 3 && "text-redPrivateCode-100"}`}
+              className={`flex items-center justify-center cursor-pointer xl:text-xl text-center text-neutralPrivateCode-600 font-bold ${category === 3 && "text-redPrivateCode-100"}`}
               onClick={() => {
                 if(category === 3) {
                   setCategory(0)
@@ -150,7 +150,7 @@ function Content() {
           </Slide>
           <Slide>
           <span 
-              className={`flex items-center justify-center cursor-pointer text-center text-neutralPrivateCode-600 font-bold ${category === 4 && "text-redPrivateCode-100"}`}
+              className={`flex items-center justify-center cursor-pointer xl:text-xl text-center text-neutralPrivateCode-600 font-bold ${category === 4 && "text-redPrivateCode-100"}`}
               onClick={() => {
                 if(category === 4) {
                   setCategory(0)
@@ -165,7 +165,7 @@ function Content() {
           
           <Slide>
           <span 
-              className={`flex items-center justify-center cursor-pointer text-center text-neutralPrivateCode-600 font-bold ${category === 5 && "text-redPrivateCode-100"}`}
+              className={`flex items-center justify-center cursor-pointer xl:text-xl text-center text-neutralPrivateCode-600 font-bold ${category === 5 && "text-redPrivateCode-100"}`}
               onClick={() => {
                 if(category === 5) {
                   setCategory(0)

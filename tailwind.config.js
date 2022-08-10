@@ -19,6 +19,7 @@ module.exports = {
           500: '#D1D1D1',
           600: '#696969',
           700: '#515151',
+          800: '#383838',
         },
         "greenPrivateCode": {
           100: '#2C9A44',
@@ -31,7 +32,11 @@ module.exports = {
       },
       boxShadow: {
         'container': 'rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px',
-      }
+      },
+      translate: {
+        'right': '-50%',
+        'top': '-50%',
+      },
     },
   },
   plugins: [

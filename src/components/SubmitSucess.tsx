@@ -8,10 +8,10 @@ function SubmitSucess() {
 
   return (
     <>
-      <div className="w-full max-w-[340px] flex flex-col justify-center items-center">
+      <div className="w-full flex flex-col justify-center items-center">
         <div className="w-10/12 flex items-center justify-end">
           <button
-            className="self-end font-poppins text-lg font-normal mt-5"
+            className="font-poppins text-lg font-normal mt-5 lg:mt-0"
             onClick={() => {
               clearCart()
               closeSucessCard()
@@ -19,7 +19,7 @@ function SubmitSucess() {
             }}>
 
             <img
-              className="w-5 self-end"
+              className="w-5 lg:w-7 self-end"
               src="/images/close.png"
               alt="Fechar"
             />
@@ -34,15 +34,15 @@ function SubmitSucess() {
           />
         </div>
 
-        <div className="w-8/12 flex items-center justify-center">
-          <h2 className="text-2xl text-center font-bold text-greenPrivateCode-200 mt-1 leading-8 mb-2">
+        <div className="w-8/12 sm:w-7/12 flex items-center justify-center">
+          <h2 className="text-2xl lg:text-3xl text-center font-bold text-greenPrivateCode-200 mt-1 leading-8 mb-2 lg:mb-3">
             Pedido Realizado com Sucesso
           </h2>
         </div>
 
         <div className="w-10/12 flex items-center justify-center">
           <button
-            className="w-full text-white py-3 bg-greenPrivateCode-200 mb-8 rounded-md font-medium"
+            className="w-full text-white py-3 lg:py-6 lg:text-xl bg-greenPrivateCode-200 mb-8 lg:mb-4 rounded-lg font-medium"
             onClick={() => {
               clearCart()
               closeSucessCard()

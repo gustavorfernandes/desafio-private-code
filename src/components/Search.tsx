@@ -27,11 +27,11 @@ function Search() {
         <fieldset>
           <label htmlFor="search" />
           <input 
-            className="w-full border border-neutralPrivateCode-500 rounded-tl-md rounded-bl-md font-nunito font-medium text-xs pl-5 py-3 outline-none text-neutralPrivateCode-700"
+            className="w-full border border-neutralPrivateCode-500 rounded-tl-md rounded-bl-md font-nunito font-medium text-xs lg:text-base pl-5 py-3 lg:py-0 lg:h-[3.25rem] outline-none text-neutralPrivateCode-700"
             type="text"
             name="search"
             id="search"
-            placeholder="Pesquisar ..."
+            placeholder="Pesquisar..."
             onChange={handleGlobalSearch}
             onBlur={handleGlobalSearch}
           />          
@@ -41,7 +41,7 @@ function Search() {
       <div className="w-2/12 max-w-[64px] flex items-center justify-center bg-redPrivateCode-100 rounded-tr-md rounded-br-md -ml-1">
         <div>
           <img
-            className="w-6 p-1"
+            className="w-6 lg:w-9 p-1"
             src="/images/search.png"
             alt="Lupa"
           />
