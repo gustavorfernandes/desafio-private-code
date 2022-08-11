@@ -36,4 +36,4 @@ yarn-error.log*
 next-env.d.ts
 
 # react input mask
-react-input-mask.d.ts
+react-loading.d.ts
