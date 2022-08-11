@@ -1,18 +1,27 @@
-### Getting Started
+# Desafio Private Code
 
-First, run the API server:
+Desafio realizado para o processo seletivo da Private Code.
+
+## Testando a aplicação
+
+Links de acesso:
+
+Aplicação: 
+
+https://desafio-front-end-gustavo-fernandes.vercel.app/
+
+Endpoints:
+
+1
+2
+3
+
+## Iniciando
+
+Na primeira tela do projeto,
+
 
 ```bash
+
 yarn api
 ```
-
-Install the dependencies.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
