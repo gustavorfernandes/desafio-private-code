@@ -34,13 +34,13 @@ http://localhost:8080/categorias/
 
 Para este desafio foram solicitadas as seguintes funcionalidades:
 
-Separação e listagem de produtos por categoria
-Pesquisa global de produtos
-Adicionar produtos ao carrinho e suas quantidades
-Validar o CEP digitado pelo usuário utilizando a API do ViaCEP
-Preencher os campos de endereço com os dados do ViaCEP
-Calcular o total do pedido em tempo real
-Finalizar o pedido enviando os dados para a API
+- Separação e listagem de produtos por categoria
+- Pesquisa global de produtos
+- Adicionar produtos ao carrinho e suas quantidades
+- Validar o CEP digitado pelo usuário utilizando a API do ViaCEP
+- Preencher os campos de endereço com os dados do ViaCEP
+- Calcular o total do pedido em tempo real
+- Finalizar o pedido enviando os dados para a API
 
 ## Testando o projeto
 
