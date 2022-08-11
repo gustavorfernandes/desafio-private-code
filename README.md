@@ -48,7 +48,7 @@ Para este desafio foram solicitadas as seguintes funcionalidades:
 
 Na tela inicial, os produtos estão listados de maneira global. A lista possui um scroll vertical invisível, possibilitando a navegação de forma mais fluida. (verificar se a API está online para aparecer os produtos)
 
-Para a listagem de produtos por categoria, basta selecionar um dos itens do menu de navegação, que é um slider. Ao selecionar o mesmo menu, o filtro é desligado e a lista volta para sua forma default.
+Para a listagem de produtos por categoria, basta selecionar um dos itens do menu de navegação, que é um slider. Ao selecionar o mesmo menu, o filtro é desligado e a lista volta para sua forma inicial.
 
 Para a pesquisa global de produtos, basta escrever no input de pesquisa, que automaticamente será feita a busca em tempo real. Ao apagar todo o campo e clicar fora do input, a pesquisa é desfeita, retornando à lista original.
 
