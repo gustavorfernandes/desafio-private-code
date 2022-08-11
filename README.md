@@ -1,10 +1,11 @@
-# Desafio Private Code
+# Desafio Front-End
 
-logo.png
+<img src="https://privatecode.com.br/web/assets/img/logo.png" width="600px">
+
 
 Desafio realizado para o processo seletivo da Private Code.
 
-## Testando a aplicação
+## Testando o projeto
 
 Links de acesso:
 
