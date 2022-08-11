@@ -1,4 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
+
 import { useContext } from "react"
 import { GlobalContext } from "../contexts/GlobalContext"
 import { AnimatePresence, motion } from "framer-motion"
@@ -47,7 +48,7 @@ function DeliveryCard() {
       <div className="w-full flex flex-col items-center justify-center mt-4">
         <div className="w-full flex flex-col items-center justify-center rounded">
           <form
-            className="w-11/12 flex flex-col items-center "  
+            className="w-11/12 flex flex-col items-center"  
             onSubmit={submitForm}>           
               <div className="w-full flex flex-col gap-2 lg:gap-4 justify-center">
                 <label

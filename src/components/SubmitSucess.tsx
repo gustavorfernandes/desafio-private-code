@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import { AnimatePresence, motion } from "framer-motion"
+
 import { useContext } from "react"
 import { GlobalContext } from "../contexts/GlobalContext"
 
@@ -42,7 +42,7 @@ function SubmitSucess() {
 
         <div className="w-10/12 flex items-center justify-center">
           <button
-            className="w-full text-white py-3 lg:py-6 lg:text-xl bg-greenPrivateCode-200 mb-8 lg:mb-4 rounded-lg font-medium"
+            className="w-full text-white py-3 lg:py-6 lg:text-xl bg-greenPrivateCode-200 hover:bg-greenPrivateCode-300 transition-all mb-8 lg:mb-4 rounded-lg font-medium"
             onClick={() => {
               clearCart()
               closeSucessCard()

@@ -1,6 +1,6 @@
-import type { NextPage } from 'next'
-import Head from 'next/head'
-import HomeScreen from '../src/screens/HomeScreen'
+import type { NextPage } from "next"
+import Head from "next/head"
+import HomeScreen from "../src/screens/HomeScreen"
 
 const Home: NextPage = () => {
   return (

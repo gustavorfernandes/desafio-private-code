@@ -1,11 +1,12 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @next/next/no-img-element */
+
 import { AnimatePresence, motion } from "framer-motion"
 import { useContext, useEffect } from "react"
 import { GlobalContext } from "../contexts/GlobalContext"
 
 function ProductCard() {
-  const { category, dataAPI, fetchDataAPI, url, openOrder, closeOrder, orderActive, fetchProductData, product, productValue, setProductValue, orderPrice, setOrderPrice, addToCart, globalCounter, incrementCounter, decrementCounter, clearCounter, toggleFinalPrice }: any = useContext(GlobalContext)
+  const { category, dataAPI, fetchDataAPI, url, openOrder, closeOrder, orderActive, fetchProductData, product, setOrderPrice, addToCart, globalCounter, incrementCounter, decrementCounter, clearCounter }: any = useContext(GlobalContext)
 
   useEffect(() => {
     fetchDataAPI(url)
@@ -28,7 +29,7 @@ function ProductCard() {
                 return (
                   <>
                     <button
-                      className="w-full py-1 flex items-center bg-white shadow-container rounded-lg mb-4 select-none"
+                      className="w-full flex items-center bg-white shadow-container rounded-lg mb-4 select-none"
                       onClick={() => {
                         openProductOrder(product.id)
                       }}
@@ -61,7 +62,7 @@ function ProductCard() {
                 return (
                   <>
                     <button
-                      className="w-full py-1 flex items-center bg-white shadow-container rounded-lg mb-4 select-none"
+                      className="w-full flex items-center bg-white shadow-container rounded-lg mb-4 select-none"
                       onClick={() => {
                         openProductOrder(product.id)
                       }}
@@ -195,7 +196,7 @@ function ProductCard() {
                 <div className="w-full flex flex-col items-center justify-center mt-4 lg:mt-0 lg:h-full">
                   <div className="w-11/12 lg:w-full lg:h-full flex items-center justify-center rounded">
                     <img
-                      className="w-full h-64 lg:h-full rounded"
+                      className="w-full h-64 lg:h-full rounded lg:rounded-none lg:rounded-tl lg:rounded-bl"
                       src={`/images/products/${product.id}.jpg`}
                       alt={`Produto ${product.id}`}
                     />

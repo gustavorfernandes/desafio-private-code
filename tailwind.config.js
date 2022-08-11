@@ -23,7 +23,8 @@ module.exports = {
         },
         "greenPrivateCode": {
           100: '#2C9A44',
-          200: '#0CAB2F',          
+          200: '#0CAB2F',         
+          300: '#159031',         
         },
         "redPrivateCode": {
           100: '#E83737',         

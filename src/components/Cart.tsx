@@ -1,11 +1,12 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable @next/next/no-img-element */
+
 import { AiOutlineShoppingCart } from "@react-icons/all-files/ai/AiOutlineShoppingCart"
 import { AiOutlineClose } from "@react-icons/all-files/ai/AiOutlineClose"
 import { MdDone } from "@react-icons/all-files/md/MdDone"
 import { AnimatePresence, motion } from "framer-motion"
-import { useContext, useEffect } from "react"
+import { useContext } from "react"
 import { GlobalContext } from "../contexts/GlobalContext"
 import DeliveryCard from "./DeliveryCard"
 import SubmitSucess from "./SubmitSucess"
@@ -255,7 +256,7 @@ function Cart() {
           <>
             <div id="overlay" className="fixed z-20 inset-0 bg-black opacity-30" onClick={closeDeliveryCard} />
 
-            <div className="w-11/12 lg:h-[840px] flex items-center justify-center fixed z-20 top-[50%] left-[50%] right-auto bottom-auto mr-[-50%] translate-y-top translate-x-right max-w-[500px]">
+            <div className="w-11/12 lg:h-[840px] flex items-center justify-center absolute z-20 top-[50%] left-[50%] right-auto bottom-auto mr-[-50%] translate-y-top translate-x-right max-w-[500px]">
               <motion.div
                 className="w-full h-full bg-white flex flex-col items-center justify-center rounded select-none shadow-container"
                 initial={{ opacity: 0, scale: 0.5 }}

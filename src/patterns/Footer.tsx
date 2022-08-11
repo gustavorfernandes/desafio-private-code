@@ -1,4 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
+
 function Footer() {
   return (
     <div className="w-screen flex items-center justify-center absolute bottom-0 bg-white h-24 lg:h-[7.5rem] border-t">

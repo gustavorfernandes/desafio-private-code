@@ -30,19 +30,18 @@ export const ContextProvider = ({ children }: any) => {
   }
 
   //Abertura de pedido
-
-  const [order, setOrder] = useState({})
+  
+  const [product, setProduct] = useState("")
   const [productValue, setProductValue] = useState(0)
   const [orderPrice, setOrderPrice] = useState(0)
   const [orderActive, setOrderActive] = useState(false)
-  const [product, setProduct] = useState("")
 
   async function fetchProductData(url: string) {
     const options: {} = {
-      method: 'GET',
-      mode: 'cors',
+      method: "GET",
+      mode: "cors",
       headers: {
-        'content-type': 'application/json;charset=utf-8'
+        "content-type": "application/json;charset=utf-8"
       }
     }
     let response = await fetch(url, options)
@@ -62,10 +61,9 @@ export const ContextProvider = ({ children }: any) => {
     setOrderActive(false)
   }
 
-  //Contadores
+  //Contador
 
-  const [globalCounter, setGlobalCounter] = useState(0)
-  const [cartCounter, setCartCounter] = useState(0)
+  const [globalCounter, setGlobalCounter] = useState(0)  
 
   function incrementCounter() {
     let count = globalCounter + 1
@@ -90,7 +88,6 @@ function clearCounter() {
 
   const [cart, setCart] = useState(false)
   const [cartItem, setCartItem] = useState([])
-  const [amount, setAmount] = useState(1)
   const [finalPrice, setFinalPrice] =useState(0)
 
   function addToCart(product: any) {
@@ -105,7 +102,7 @@ function clearCounter() {
         quantidade: globalCounter
       })
     } else {
-      item.amount = item.amount + 1
+      item.quantidade = item.quantidade + 1
     }
     setCartItem(copyCart)
   }
@@ -113,18 +110,23 @@ function clearCounter() {
   function openCart() {
     setCart(true)
   }
+
   function closeCart() {
     setCart(false)
   }
+
   function clearCart() {
     setCartItem([])
     setOrderPrice(0)
   }
+
   function toggleFinalPrice() {
+    
     let total = cartItem.reduce(getTotal, 0)
     function getTotal(total: any, item: any) {
       return total + (item.valor * item.quantidade)
     }
+    
     setFinalPrice(total)
   }
 
@@ -153,13 +155,13 @@ function clearCounter() {
   //Integração com a viaCEP
 
   async function searchZipCode(cep: string, input: HTMLInputElement) {
-    const zipCode: string = cep.replace(/\D/g, '')
+    const zipCode: string = cep.replace(/\D/g, "")
     const urlViaCep: string = `https://viacep.com.br/ws/${zipCode}/json/`
     const options: {} = {
-      method: 'GET',
-      mode: 'cors',
+      method: "GET",
+      mode: "cors",
       headers: {
-        'content-type': 'application/json;charset=utf-8'
+        "content-type": "application/json;charset=utf-8"
       }
     }
 
@@ -206,7 +208,7 @@ function clearCounter() {
   //Envio do pedido para a API
 
   function sendOrderData() {
-    const urlOrder = 'http://localhost:8080/pedidos/'
+    const urlOrder = "http://localhost:8080/pedidos/"
     axios.post(urlOrder, {
       produtos: cartItem,
       bairro: district,
@@ -225,7 +227,7 @@ function clearCounter() {
   }
 
   return (
-    <GlobalContext.Provider value={{ dataAPI, setDataAPI, url, setUrl, fetchDataAPI, category, setCategory, filterList, order, setOrder, orderPrice, setOrderPrice, orderActive, setOrderActive, openOrder, closeOrder, product, setProduct, productValue, setProductValue, fetchProductData, globalCounter, setGlobalCounter, cartCounter, setCartCounter, incrementCounter, decrementCounter, clearCounter, cart, setCart, openCart, closeCart, clearCart, cartItem, setCartItem, amount, setAmount, addToCart, toggleFinalPrice, finalPrice, setFinalPrice, delivery, setDelivery, openDeliveryCard, closeDeliveryCard, loading, setLoading, deliveryMethod, setDeliveryMethod, cep, setCep, district, setDistrict, number, setNumber, city, setCity, complement, setComplement, address, setAddress, reference, setReference, dataViaCep, setDataViaCep, searchZipCode, fillFields, clearFields, isSubmitSucess, setSubmitSucess, openSucessCard, closeSucessCard, sendOrderData }}>
+    <GlobalContext.Provider value={{ dataAPI, setDataAPI, url, setUrl, fetchDataAPI, category, setCategory, filterList, orderPrice, setOrderPrice, orderActive, setOrderActive, openOrder, closeOrder, product, setProduct, productValue, setProductValue, fetchProductData, globalCounter, setGlobalCounter, incrementCounter, decrementCounter, clearCounter, cart, setCart, openCart, closeCart, clearCart, cartItem, setCartItem, addToCart, toggleFinalPrice, finalPrice, setFinalPrice, delivery, setDelivery, openDeliveryCard, closeDeliveryCard, loading, setLoading, deliveryMethod, setDeliveryMethod, cep, setCep, district, setDistrict, number, setNumber, city, setCity, complement, setComplement, address, setAddress, reference, setReference, dataViaCep, setDataViaCep, searchZipCode, fillFields, clearFields, isSubmitSucess, setSubmitSucess, openSucessCard, closeSucessCard, sendOrderData }}>
       {children}
     </GlobalContext.Provider>
   )

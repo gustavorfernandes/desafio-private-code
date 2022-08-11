@@ -1,7 +1,7 @@
 import { useContext } from "react"
 import { GlobalContext } from "../contexts/GlobalContext"
 import ProductCard from "../components/ProductCard"
-import { Slider, SliderProps, Slide } from '../utils/slider-imports'
+import { Slider, SliderProps, Slide } from "../utils/slider-imports"
 
 const settingsMobile: SliderProps = { 
   spaceBetween: 0,
