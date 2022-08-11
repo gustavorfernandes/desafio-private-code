@@ -58,11 +58,11 @@ Ao clicar em um produto, será aberto um modal, que é o card de produtos. Nele,
 
 ### Carrinho
 
-Assim que um produto for adicionado ao carrinho, ele aparecerá na tela do carrinho. Ao tentar incluir o mesmo produto mais de uma vez, ao invés de adicionar mais um item ao carrinho, será adicionado à quantidade do produto. O total do valor pedido será calculado automaticamente. Ao clicar em cancelar, o carrinho é apagado. Clicando em finalizar, é aberto o card de entrega. Se clicar em finalizar com o carrinho vazio, nada acontece.
+Assim que um produto for adicionado ao carrinho, ele aparecerá na tela do carrinho. Ao tentar incluir o mesmo produto mais de uma vez, ao invés de adicionar mais um item ao carrinho, será adicionado à quantidade do produto. O valor total do pedido será calculado automaticamente. Ao clicar em cancelar, o carrinho é apagado. Clicando em finalizar, é aberto o card de entrega. Caso clique em finalizar com o carrinho vazio, nada acontecerá.
 
 ### Card de entrega
 
-O card de entrega é um modal com um formulário para preenchimento das informações de entrega. Ao digitar um CEP válido e clicar fora do campo, os demais campos pertinentes ao endereço serão preenchidos automaticamente através da API do ViaCEP. Validando todos campos necessários, ao clicar em continuar, será aberta a tela de conclusão do pedido.
+O card de entrega é um modal com um formulário para preenchimento das informações de entrega. Ao digitar um CEP válido e clicar fora do campo, os demais campos pertinentes ao endereço serão preenchidos automaticamente através da API do ViaCEP. Validando todos campos necessários e clicando em continuar, será aberta a tela de conclusão do pedido.
 
 ### Conclusão do pedido
 
